@@ -1,0 +1,11 @@
+body {
+   font-family: Verdana, Helvetica, sans-serif;
+   background-color: #FFFFCC;
+   padding-left: 11em;
+}
+
+ul.navbar {
+    position: absolute;
+    top: 2em;
+    left: 1em;
+    width: 9em; }
