@@ -34,7 +34,7 @@
       #map-canvas { height: 75%; width:80%;}
     </style>
     <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXata78o6SHGm9ZLu_4HqYEJ3vmkMeWy0&sensor=false">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXMMCXLxQqjdY-Y3T3oEQwkxc8bC_NYag&sensor=false">
     </script>
     <script type="text/javascript">
       function initialize() {
@@ -67,7 +67,6 @@
 %>
   <p>Hello, ${fn:escapeXml(user.nickname)}! (You can sign out
   <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">here</a>.)</p>
-  <br><br><hr>
 <%  }
     else{ %>
       <p>Hello!

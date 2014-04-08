@@ -1,0 +1,2 @@
+serviceClass: gamefinder.client.GreetingService
+path: E530B5FDEFABBFE72F84BFBE6078A75C.gwt.rpc
