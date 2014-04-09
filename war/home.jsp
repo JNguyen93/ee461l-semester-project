@@ -18,7 +18,7 @@
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
-	UserService userService = UserServiceFactory.getUserService();
+  UserService userService = UserServiceFactory.getUserService();
     User user = userService.getCurrentUser();
 %> 
 
@@ -29,33 +29,22 @@
 
        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0 }
       #map-canvas { height: 75%; width:80%;}
     </style>
     <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXMMCXLxQqjdY-Y3T3oEQwkxc8bC_NYag&sensor=false">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXMMCXLxQqjdY-Y3T3oEQwkxc8bC_NYag&sensor=false"/>
     </script>
-    <script type="text/javascript">
-      function initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng(30.286, -97.739),
-          zoom: 15
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
+    <script type="text/javascript" src="/js/map.js">
     </script>
  </head>
 
  <header>
-  <center>
-    <h1>Welcome to the Game Finder</h1></center>
+  <center><h1>Welcome to the Game Finder</h1></center>
   </header>
 
   <body>
 <center>
+
 <%
     String websiteName = request.getParameter("websiteName");
     if (websiteName == null) {
@@ -65,12 +54,16 @@
     if (user != null) {
       pageContext.setAttribute("user", user);
 %>
+
   <p>Hello, ${fn:escapeXml(user.nickname)}! (You can sign out
   <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">here</a>.)</p>
+
 <%  }
     else{ %>
+
       <p>Hello!
       <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
+      
 <%  } %>
 
     <br><br><br>
