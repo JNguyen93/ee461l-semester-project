@@ -43,10 +43,15 @@ function initialize() {
 
 	        google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	        	return function(){
-	        		var s = "Coordinates: " + marker.getPosition(); 
-	        		marker.title= s;
 	        		infowindow.setContent(markers[i][2]);
 	        		infowindow.open(map,marker);
+	        	}
+	        })(marker,i));
+	       
+    		google.maps.event.addListener(marker, 'position_changed', (function(marker, i) {
+	        	return function(){
+	        		var s = "Coordinates: " + marker.getPosition(); 
+	         		marker.title= s;
 	        	}
 	        })(marker,i));
 	    }
