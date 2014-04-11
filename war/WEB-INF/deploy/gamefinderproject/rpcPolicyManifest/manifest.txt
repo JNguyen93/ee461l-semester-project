@@ -1,2 +1,3 @@
 # Module gamefinderproject
 # RPC service class, partial path of RPC policy file
+gamefinder.client.GreetingService, E530B5FDEFABBFE72F84BFBE6078A75C.gwt.rpc
