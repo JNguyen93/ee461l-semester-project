@@ -1,12 +1,14 @@
 package gamefinder;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+
+import javax.servlet.http.*;
+
+import com.google.appengine.api.users.*;
 
 public class GameServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse resp)
-
-                throws IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         UserService userService = UserServiceFactory.getUserService();
 
@@ -34,11 +36,6 @@ public class GameServlet extends HttpServlet {
           else if(endAMorPM=="pm"){
        	 //  game.setDate(endTime+12);
           }
-  
-      
-
- 
-
         resp.sendRedirect("/home.jsp");
 
     }
