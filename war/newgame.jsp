@@ -66,44 +66,52 @@
  </header> 
 
 <body>
-Time:
+Time:  
 <select>
-<option name="beginTime" value="1:00">1:00</option>
-<option name="beginTime" value="2:00">2:00</option>
-<option name="beginTime" value="3:00">3:00</option>
-<option name="beginTime" value="4:00">4:00</option>
-<option name="beginTime" value="5:00">5:00</option>
-<option name="beginTime" value="6:00">6:00</option>
-<option name="beginTime" value="7:00">7:00</option>
-<option name="beginTime" value="8:00">8:00</option>
-<option name="beginTime" value="9:00">9:00</option>
-<option name="beginTime" value="10:00">10:00</option>
-<option name="beginTime" value="11:00">11:00</option>
-<option name="beginTime" value="12:00">12:00</option>
-
+<option name="beginTimeHour" value="1">1</option>
+<option name="beginTimeHour" value="2">2</option>
+<option name="beginTimeHour" value="3">3</option>
+<option name="beginTimeHour" value="4">4</option>
+<option name="beginTimeHour" value="5">5</option>
+<option name="beginTimeHour" value="6">6</option>
+<option name="beginTimeHour" value="7">7</option>
+<option name="beginTimeHour" value="8">8</option>
+<option name="beginTimeHour" value="9">9</option>
+<option name="beginTimeHour" value="10">10</option>
+<option name="beginTimeHour" value="11">11</option>
+<option name="beginTimeHour" value="12">12</option>
+</select>:
+<select>
+<option name="beginTimeMin" value="00">00</option>
+<option name="beginTimeMin" value="30">30</option>
 </select>
 <select>
-<option name="beginAMorPM" value="pm">pm</option>
-<option name="beginAMorPM" value="am">am</option>
+<option name="beginAMPM" value="pm">pm</option>
+<option name="beginAMPM" value="am">am</option>
 </select>
  to <select>
-<option name="endTime" value="1:00">1:00</option>
-<option name="endTime" value="2:00">2:00</option>
-<option name="endTime" value="3:00">3:00</option>
-<option name="endTime" value="4:00">4:00</option>
-<option name="endTime" value="5:00">5:00</option>
-<option name="endTime" value="6:00">6:00</option>
-<option name="endTime" value="7:00">7:00</option>
-<option name="endTime" value="8:00">8:00</option>
-<option name="endTime" value="9:00">9:00</option>
-<option name="endTime" value="10:00">10:00</option>
-<option name="endTime" value="11:00">11:00</option>
-<option name="endTime" value="12:00">12:00</option>
+<option name="endTimeHour" value="1">1</option>
+<option name="endTimeHour" value="2">2</option>
+<option name="endTimeHour" value="3">3</option>
+<option name="endTimeHour" value="4">4</option>
+<option name="endTimeHour" value="5">5</option>
+<option name="endTimeHour" value="6">6</option>
+<option name="endTimeHour" value="7">7</option>
+<option name="endTimeHour" value="8">8</option>
+<option name="endTimeHour" value="9">9</option>
+<option name="endTimeHour" value="10">10</option>
+<option name="endTimeHour" value="11">11</option>
+<option name="endTimeHour" value="12">12</option>
 
 </select>
+</select>:
 <select>
-<option name="endAMorPM"value="pm">pm</option>
-<option name="endAMorPM" value="am">am</option>
+<option name="endTimeMin" value="00">00</option>
+<option name="endTimeMin" value="30">30</option>
+</select>
+<select>
+<option name="endAMPM"value="pm">pm</option>
+<option name="endAMPM" value="am">am</option>
 </select>
 <br>
 <input type="checkbox" name="email" value="emailNotification">send e-mail notifications<br>
@@ -116,9 +124,7 @@ Time:
 <input type="submit">
 </form>
 
-<br><br><br>
-
-<a href="/home.jsp">Home</a>
+<br><br><br><a href="/">Home</a>
 
 
 <%  }
@@ -126,7 +132,7 @@ Time:
 
       <p>Hello! Please 
       <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a> to create a new game! </p>
-      <br><br><br><a href="/home.jsp">Home</a>
+      <br><br><br><a href="/">Home</a>
       
 <%  } %>
 
