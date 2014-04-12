@@ -17,12 +17,10 @@ function initialize() {
 	  '<p><b>This is UT</b>, </p>'+
 	  '</div>'+
 	  '</div>';
-
+// intialize the info window
 	var infowindow = new google.maps.InfoWindow({
 	  content: contentString
 	});
-
-	
 
 	 for (var i = 0; i < markers.length; i++) {
 	        // obtain the attribues of each marker
@@ -33,22 +31,21 @@ function initialize() {
 	        var myLatlng = new google.maps.LatLng(lat, lng);
 
 	        var contentString = "<html><body><div><p><h2>" + trailhead_name + "</h2></p></div></body></html>";
-
+	        // make the markers
 	        var marker = new google.maps.Marker({
 	            position: myLatlng,
 	            map: map,
-	            draggable:true,
 	            title: "Coordinates: " + lat + " , " + lng + " | Trailhead name: " + trailhead_name
 	        });
 	       // global_markers[i] = marker;
-
+	        // changes the info window to desired content
 	        google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	        	return function(){
 	        		infowindow.setContent(markers[i][2]);
 	        		infowindow.open(map,marker);
 	        	}
 	        })(marker,i));
-	       
+	       // changes the coordinates as we drag the markers
     		google.maps.event.addListener(marker, 'position_changed', (function(marker, i) {
 	        	return function(){
 	        		var s = "Coordinates: " + marker.getPosition(); 
@@ -56,12 +53,15 @@ function initialize() {
 	        	}
 	        })(marker,i));
 	    }
+	 
+	 	// adding new markers
 	 function placeMarker(location) {
 		    var marker = new google.maps.Marker({
 		        position: location, 
 		        map: map,
 		        draggable:true
 		    });
+		    // makes the info window pop up on new markers
 		    google.maps.event.addListener(marker, 'click', (function(marker) {
 		      	return function(){
 		      		infowindow.setContent("It's a new Marker!");
@@ -69,6 +69,7 @@ function initialize() {
 		      	}
 		      })(marker));
 		}
+	 	// calls the place marker function when the user clicks
 	 google.maps.event.addListener(map, 'click', function(event) {
 		   placeMarker(event.latLng);
 		});
