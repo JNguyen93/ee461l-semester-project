@@ -15,6 +15,17 @@
     <servlet-name>greetServlet</servlet-name>
     <url-pattern>/gamefinderproject/greet</url-pattern>
   </servlet-mapping>
+
+   <servlet>
+   <servlet-name>MakeGame</servlet-name>
+   <servlet-class>gamefinder.GameServlet</servlet-class>
+   </servlet>
+   
+   <servlet-mapping>
+   <servlet-name>MakeGame</servlet-name>
+   <url-pattern>/makegame</url-pattern>
+   </servlet-mapping>
+ 
   
   <!-- Default page to serve -->
   <welcome-file-list>
