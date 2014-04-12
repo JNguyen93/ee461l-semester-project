@@ -67,47 +67,48 @@
 
 <body>
 Time:  
-<select>
-<option name="beginTimeHour" value="1">1</option>
-<option name="beginTimeHour" value="2">2</option>
-<option name="beginTimeHour" value="3">3</option>
-<option name="beginTimeHour" value="4">4</option>
-<option name="beginTimeHour" value="5">5</option>
-<option name="beginTimeHour" value="6">6</option>
-<option name="beginTimeHour" value="7">7</option>
-<option name="beginTimeHour" value="8">8</option>
-<option name="beginTimeHour" value="9">9</option>
-<option name="beginTimeHour" value="10">10</option>
-<option name="beginTimeHour" value="11">11</option>
-<option name="beginTimeHour" value="12">12</option>
+<select name="beginTimeHour">
+<option value="12">12</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
 </select>:
-<select>
-<option name="beginTimeMin" value="00">00</option>
-<option name="beginTimeMin" value="30">30</option>
+<select name="beginTimeMin">
+<option value="00">00</option>
+<option value="30">30</option>
 </select>
-<select>
-<option name="beginAMPM" value="pm">pm</option>
-<option name="beginAMPM" value="am">am</option>
+<select name="beginAMPM">
+<option value="pm">pm</option>
+<option value="am">am</option>
 </select>
- to <select>
-<option name="endTimeHour" value="1">1</option>
-<option name="endTimeHour" value="2">2</option>
-<option name="endTimeHour" value="3">3</option>
-<option name="endTimeHour" value="4">4</option>
-<option name="endTimeHour" value="5">5</option>
-<option name="endTimeHour" value="6">6</option>
-<option name="endTimeHour" value="7">7</option>
-<option name="endTimeHour" value="8">8</option>
-<option name="endTimeHour" value="9">9</option>
-<option name="endTimeHour" value="10">10</option>
-<option name="endTimeHour" value="11">11</option>
-<option name="endTimeHour" value="12">12</option>
+ to <select name="endTimeHour">
+<option value="12">12</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
 
 </select>
 </select>:
-<select>
-<option name="endTimeMin" value="00">00</option>
-<option name="endTimeMin" value="30">30</option>
+<select name="endTimeMin">
+<option value="00">00</option>
+<option value="30">30</option>
 </select>
 <select>
 <option name="endAMPM"value="pm">pm</option>
@@ -121,7 +122,7 @@ Time:
 <div id="map-canvas"></div>
 
 <br>
-<input type="submit">
+<input type="submit" value="Create new game"/>
 </form>
 
 <br><br><br><a href="/">Home</a>
