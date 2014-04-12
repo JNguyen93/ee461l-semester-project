@@ -22,6 +22,7 @@ function initialize() {
 	  content: contentString
 	});
 
+	
 
 	 for (var i = 0; i < markers.length; i++) {
 	        // obtain the attribues of each marker
@@ -55,7 +56,26 @@ function initialize() {
 	        	}
 	        })(marker,i));
 	    }
+	 function placeMarker(location) {
+		    var marker = new google.maps.Marker({
+		        position: location, 
+		        map: map,
+		        draggable:true
+		    });
+		    google.maps.event.addListener(marker, 'click', (function(marker) {
+		      	return function(){
+		      		infowindow.setContent("It's a new Marker!");
+		      		infowindow.open(map,marker);
+		      	}
+		      })(marker));
+		}
+	 google.maps.event.addListener(map, 'click', function(event) {
+		   placeMarker(event.latLng);
+		});
+	 
+	
 
+		
 
 //	addMarker();
 }
