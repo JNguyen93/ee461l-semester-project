@@ -41,7 +41,7 @@
 
 </body>
 
-<form action="demo_form.asp" method="post">
+<form action="/makegame" method="post">
 <header>What kind of game would you like to play?
 <select>
   <option value="football" name="sport">Football</option>
