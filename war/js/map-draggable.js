@@ -74,7 +74,6 @@ function initialize() {
 	 
 
 	 	// calls the place marker function when the user clicks
-
 	 google.maps.event.addListener(map, 'click', function(event) {
 			if (marked==false){
 				placeMarker(event.latLng);
