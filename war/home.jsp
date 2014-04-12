@@ -62,72 +62,16 @@
     else{ %>
 
       <p>Hello!
-      <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
+      <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a> to create a new game!</p>
       
 <%  } %>
 
-<center>
- <header>
-  <center><h1>Welcome to the Game Finder</h1></center>
-  </header>
-<form action="demo_form.asp" method="post">
-<header>What kind of game would you like to play?
-<select>
-  <option value="football" name="sport">Football</option>
-  <option value="soccer" name="sport">Soccer</option>
-  <option value="basketball" name="sport">Basketball</option>
-</select>
- </header> 
+    <% if (user != null){ %>
+    <br><br>
+    <a href="/newgame.jsp">Create new game</a>
+<%  } %>
 
-<header>Time:
-<select>
-  <option name="beginTime" value="1:00">1:00</option>
-<option name="beginTime" value="2:00">2:00</option>
-<option name="beginTime" value="3:00">3:00</option>
-<option name="beginTime" value="4:00">4:00</option>
-<option name="beginTime" value="5:00">5:00</option>
-<option name="beginTime" value="6:00">6:00</option>
-<option name="beginTime" value="7:00">7:00</option>
-<option name="beginTime" value="8:00">8:00</option>
-<option name="beginTime" value="9:00">9:00</option>
-<option name="beginTime" value="10:00">10:00</option>
-<option name="beginTime" value="11:00">11:00</option>
-<option name="beginTime" value="12:00">12:00</option>
-
-</select>
-<select>
-<option name="beginAMorPM" value="pm">pm</option>
-<option name="beginAMorPM" value="am">am</option>
-</select>
- to <select>
-    <option name="endTime" value="1:00">1:00</option>
-<option name="endTime" value="2:00">2:00</option>
-<option name="endTime" value="3:00">3:00</option>
-<option name="endTime" value="4:00">4:00</option>
-<option name="endTime" value="5:00">5:00</option>
-<option name="endTime" value="6:00">6:00</option>
-<option name="endTime" value="7:00">7:00</option>
-<option name="endTime" value="8:00">8:00</option>
-<option name="endTime" value="9:00">9:00</option>
-<option name="endTime" value="10:00">10:00</option>
-<option name="endTime" value="11:00">11:00</option>
-<option name="endTime" value="12:00">12:00</option>
-
-</select>
-<select>
-<option name="endAMorPM"value="pm">pm</option>
-<option name="endAMorPM" value="am">am</option>
-</select>
- </header> 
-<input type="checkbox" name="email" value="emailNotification">send e-mail notifications<br>
-<input type="checkbox" name="sms" value="smsNotification">send sms notifications<br>
-<input type="submit">
-</form>
-</center>
-
-
-    <br><br><br>
-
+<br><br><br>
     <div id="map-canvas"></div>
   </center>
   </body>
