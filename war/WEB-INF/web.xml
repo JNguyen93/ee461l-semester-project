@@ -7,14 +7,24 @@
 
   <!-- Servlets -->
   <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>gamefinder.server.GreetingServiceImpl</servlet-class>
-  </servlet>
+        <servlet-name>gameservlet</servlet-name>
+        <servlet-class>gamefinder.GameServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>gameservlet</servlet-name>
+        <url-pattern>/gameservlet</url-pattern>
+    </servlet-mapping>
   
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/gamefinderproject/greet</url-pattern>
-  </servlet-mapping>
+  <servlet>
+        <servlet-name>subscribe</servlet-name>
+        <servlet-class>gamefinder.SubscriptionServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>subscribe</servlet-name>
+        <url-pattern>/subscribe</url-pattern>
+    </servlet-mapping>
 
    <servlet>
    <servlet-name>MakeGame</servlet-name>
