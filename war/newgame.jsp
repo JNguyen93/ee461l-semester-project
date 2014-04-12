@@ -19,6 +19,19 @@
 
 <head>
    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+
+
+       <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      #map-canvas { height: 75%; width:80%;}
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXMMCXLxQqjdY-Y3T3oEQwkxc8bC_NYag&sensor=false"/>
+    </script>
+    <script type="text/javascript" src="/js/map-draggable.js">
+    </script>
+
+ 
 </head>
 
 <center>
@@ -41,6 +54,8 @@
 
 </body>
 
+
+
 <form action="/makegame" method="post">
 <header>What kind of game would you like to play?
 <select>
@@ -53,7 +68,7 @@
 <body>
 Time:
 <select>
-  <option name="beginTime" value="1:00">1:00</option>
+<option name="beginTime" value="1:00">1:00</option>
 <option name="beginTime" value="2:00">2:00</option>
 <option name="beginTime" value="3:00">3:00</option>
 <option name="beginTime" value="4:00">4:00</option>
@@ -72,7 +87,7 @@ Time:
 <option name="beginAMorPM" value="am">am</option>
 </select>
  to <select>
-    <option name="endTime" value="1:00">1:00</option>
+<option name="endTime" value="1:00">1:00</option>
 <option name="endTime" value="2:00">2:00</option>
 <option name="endTime" value="3:00">3:00</option>
 <option name="endTime" value="4:00">4:00</option>
@@ -93,9 +108,17 @@ Time:
 <br>
 <input type="checkbox" name="email" value="emailNotification">send e-mail notifications<br>
 <input type="checkbox" name="sms" value="smsNotification">send sms notifications<br>
+
+<p>Click and drag to select a location to play!</p>
+<div id="map-canvas"></div>
+
+<br>
 <input type="submit">
 </form>
-<br><br><br><a href="/home.jsp">Home</a>
+
+<br><br><br>
+
+<a href="/home.jsp">Home</a>
 
 
 <%  }
@@ -107,7 +130,9 @@ Time:
       
 <%  } %>
 
-</center>
 
+    
+
+</center>
   </body>
 </html>
