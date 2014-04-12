@@ -1,6 +1,7 @@
 var global_markers = [];
 var map;
 var markers = [[30.286, -97.739, 'stuff stuff'], [30.28, -97.7, 'trialhead1'], [30.285, -97.73, 'trialhead2']];
+var marked = false;
 
 function initialize() {
 	var mapOptions = {
@@ -27,7 +28,7 @@ function initialize() {
 	        var lat = markers[i][0];
 	        var lng = markers[i][1];
 	        var trailhead_name = markers[i][2];
-
+	       
 	        var myLatlng = new google.maps.LatLng(lat, lng);
 
 	        var contentString = "<html><body><div><p><h2>" + trailhead_name + "</h2></p></div></body></html>";
@@ -62,16 +63,23 @@ function initialize() {
 		        draggable:true
 		    });
 		    // makes the info window pop up on new markers
-		    google.maps.event.addListener(marker, 'click', (function(marker) {
-		      	return function(){
-		      		infowindow.setContent("It's a new Marker!");
-		      		infowindow.open(map,marker);
-		      	}
-		      })(marker));
-		}
+		    	google.maps.event.addListener(marker, 'click', (function(marker) {
+		    		return function(){
+		    			var marked=true;
+		    			infowindow.setContent("It's a new Marker!");
+		    			infowindow.open(map,marker);
+		    		}
+		    	})(marker));
+		    }
+	 
+
 	 	// calls the place marker function when the user clicks
+
 	 google.maps.event.addListener(map, 'click', function(event) {
-		   placeMarker(event.latLng);
+			if (marked==false){
+				placeMarker(event.latLng);
+				marked=true;
+			}
 		});
 	 
 	
