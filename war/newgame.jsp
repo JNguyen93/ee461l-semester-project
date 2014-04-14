@@ -111,8 +111,8 @@ Time:
 <option value="30">30</option>
 </select>
 <select>
-<option name="endAMPM"value="pm">pm</option>
-<option name="endAMPM" value="am">am</option>
+<option name="endAMPM"value="1">pm</option>
+<option name="endAMPM" value="0">am</option>
 </select>
 <br>
 <input type="checkbox" name="email" value="emailNotification">send e-mail notifications<br>
