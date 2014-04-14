@@ -87,8 +87,8 @@ Time:
 <option value="30">30</option>
 </select>
 <select name="beginAMPM">
-<option value="pm">pm</option>
-<option value="am">am</option>
+<option value="1">pm</option>
+<option value="0">am</option>
 </select>
  to <select name="endTimeHour">
 <option value="12">12</option>
