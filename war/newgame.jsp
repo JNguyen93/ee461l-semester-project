@@ -58,10 +58,10 @@
 
 <form action="/makegame" method="post">
 <header>What kind of game would you like to play?
-<select>
-  <option value="football" name="sport">Football</option>
-  <option value="soccer" name="sport">Soccer</option>
-  <option value="basketball" name="sport">Basketball</option>
+<select name = "sport">
+  <option value="football">Football</option>
+  <option value="soccer">Soccer</option>
+  <option value="basketball">Basketball</option>
 </select>
  </header> 
 
@@ -87,8 +87,8 @@ Time:
 <option value="30">30</option>
 </select>
 <select name="beginAMPM">
-<option value="1">pm</option>
-<option value="0">am</option>
+<option value="PM">pm</option>
+<option value="AM">am</option>
 </select>
  to <select name="endTimeHour">
 <option value="12">12</option>
@@ -110,9 +110,9 @@ Time:
 <option value="00">00</option>
 <option value="30">30</option>
 </select>
-<select>
-<option name="endAMPM"value="1">pm</option>
-<option name="endAMPM" value="0">am</option>
+<select name="endAMPM">
+<option value="PM">pm</option>
+<option value="AM">am</option>
 </select>
 <br>
 <input type="checkbox" name="email" value="emailNotification">send e-mail notifications<br>

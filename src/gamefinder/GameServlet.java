@@ -25,8 +25,14 @@ public class GameServlet extends HttpServlet {
         User user = userService.getCurrentUser();
 
         String sportName = req.getParameter("sport");
+        String beginTime = req.getParameter("beginTime");
+        String beginAMorPM = req.getParameter("beginAMorPM");
+        String endAMorPM = req.getParameter("endAMorPM");
+        String endTime = req.getParameter("endTime");
+
+
         //String test = req.getParameter("endTimeMin");
-        //_log.info(test);
+        //_log.info(sportName);
         
         int beginTimeHour = Integer.parseInt(req.getParameter("beginTimeHour"));
         int beginTimeMin = Integer.parseInt(req.getParameter("beginTimeMin"));
@@ -37,15 +43,40 @@ public class GameServlet extends HttpServlet {
         
         //HOW TO GET LOCATION WTF
         
+
        Game game = new Game();
+
        game.setSport(sportName);
-       //game.setTime(beginTimeHour, beginTimeMin, beginAMPM);
-       //game.setEndTime(endTimeHour, endTimeMin, endAMPM);
        //game.setLocation();
+       //game.setSport(sportName);
+
+     //  game.setSport(sportName);
+       game.setStartTime(beginTimeHour, beginTimeMin, beginAMPM);
+       game.setEndTime(endTimeHour, endTimeMin, endAMPM);
+
+       //game.setLocation();
+
+
+       if(beginAMorPM=="am"){
+    	//   game.setDate(beginTime);
+       }
+       else if(beginAMorPM=="pm"){
+    	 //  game.setDate(beginTime+12);
+       }
+       if(endAMorPM=="am"){
+       	//   game.setDate(endTime);
+          }
+          else if(endAMorPM=="pm"){
+       	 //  game.setDate(endTime+12);
+          }
+        resp.sendRedirect("/home.jsp");
+        
+
        
-       //ofy().save().entity(game).now();
-       resp.sendRedirect("/");
-       //_log.info("Game from " + beginTimeHour +":" + beginTimeMin + " until " + endTimeHour + ":" + endTimeMin);
+       ofy().save().entity(game).now();
+       //resp.sendRedirect("/");
+       _log.info("Game from " + beginTimeHour +":" + beginTimeMin + " until " + endTimeHour + ":" + endTimeMin);
+
         _log.info("New game created!");
     }
 
