@@ -2,6 +2,8 @@ var global_markers = [];
 var map;
 var markers = [[30.286, -97.739, 'stuff stuff'], [30.28, -97.7, 'trialhead1'], [30.285, -97.73, 'trialhead2']];
 var marked = false;
+var latitude;
+var longitude;
 
 function initialize() {
 	var mapOptions = {
@@ -36,7 +38,8 @@ function initialize() {
 	        var marker = new google.maps.Marker({
 	            position: myLatlng,
 	            map: map,
-	            title: "Coordinates: " + lat + " , " + lng + " | Trailhead name: " + trailhead_name
+	            title: "Coordinates: " + lat + " , " + lng + " | Trailhead name: " + trailhead_name,
+	           // draggable:true
 	        });
 	       // global_markers[i] = marker;
 	        // changes the info window to desired content
@@ -46,13 +49,9 @@ function initialize() {
 	        		infowindow.open(map,marker);
 	        	}
 	        })(marker,i));
-	       // changes the coordinates as we drag the markers
-    		google.maps.event.addListener(marker, 'position_changed', (function(marker, i) {
-	        	return function(){
-	        		var s = "Coordinates: " + marker.getPosition(); 
-	         		marker.title= s;
-	        	}
-	        })(marker,i));
+	        
+	        
+	     
 	    }
 	 
 	 	// adding new markers
@@ -70,9 +69,19 @@ function initialize() {
 		    			infowindow.open(map,marker);
 		    		}
 		    	})(marker));
+		    // changes the coordinates as we drag the markers	
+		    	google.maps.event.addListener(marker, 'position_changed', (function(marker) {
+		        	return function(){
+		        		latitude = marker.getPosition().lat();
+		        		longitude = marker.getPosition().lng();
+		        		var s = "Coordinates: " + marker.getPosition(); 
+		        		infowindow.setContent(s);
+		    			infowindow.open(map,marker);
+		         		marker.title= s;
+		        	}
+		        })(marker));
 		    }
 	 
-
 	 	// calls the place marker function when the user clicks
 	 google.maps.event.addListener(map, 'click', function(event) {
 			if (marked==false){
