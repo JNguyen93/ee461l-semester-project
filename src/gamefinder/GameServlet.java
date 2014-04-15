@@ -40,24 +40,25 @@ public class GameServlet extends HttpServlet {
         String endAMPM = req.getParameter("endAMPM");
         int endTimeHour = Integer.parseInt(req.getParameter("endTimeHour"));
         int endTimeMin = Integer.parseInt(req.getParameter("endTimeMin"));
-        
-        //HOW TO GET LOCATION WTF
-        
-        String longitude = req.getParameter("longitude");
-        String latitude = req.getParameter("latitude");
-        //_log.info(longitude +" "+ latitude);
 
        Game game = new Game();
 
        game.setSport(sportName);
-       //game.setLocation();
        //game.setSport(sportName);
 
      //  game.setSport(sportName);
        game.setStartTime(beginTimeHour, beginTimeMin, beginAMPM);
        game.setEndTime(endTimeHour, endTimeMin, endAMPM);
 
-       //game.setLocation();
+       
+       // saving Location
+       String longitude1 = req.getParameter("longitude");
+       String latitude1 = req.getParameter("latitude");
+       _log.info(longitude1 +" "+ latitude1);
+       
+       double latitude = Double.parseDouble(req.getParameter("latitude"));
+       double longitude = Double.parseDouble(req.getParameter("longitude"));
+       game.setLocation(latitude, longitude);
 
 
        if(beginAMorPM=="am"){
