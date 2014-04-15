@@ -87,12 +87,21 @@
 		  pageContext.setAttribute("sport", game.getSport());
 		  pageContext.setAttribute("start", game.getStartTime());
 		  pageContext.setAttribute("end", game.getEndTime());
-		  
-		  %><hr>
+		  pageContext.setAttribute("numOfPlayers", game.getNumPlayers());
+		  pageContext.setAttribute("id", game.getID());
+		  %>
+		  <hr>
 		  
 		    <p> Sport: <b>${fn:escapeXml(sport)}</b> </p>
 		  	  <p> Start Time: <b>${fn:escapeXml(start)}</b> </p>
-		  	  <p> End Time: <b>${fn:escapeXml(end)}</b> </p> <%
+		  	  <p> End Time: <b>${fn:escapeXml(end)}</b> </p>
+		  	  <p> Players: <b>${fn:escapeXml(numOfPlayers)}</b> </p>
+		  	  <p> id: <b>${fn:escapeXml(id)}</b> </p>
+		  	  <form action="/makegame" method="get">
+		  <input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
+
+		  <input type="submit" value="Join Game"/>
+		  </form> <%
 	}
     
     

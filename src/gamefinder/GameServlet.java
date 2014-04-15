@@ -7,65 +7,93 @@ import javax.servlet.http.*;
 
 import gamefinder.GameServlet;
 
-import com.google.appengine.api.users.*;
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.ObjectifyService;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+@SuppressWarnings("serial")
 public class GameServlet extends HttpServlet {
+
+	
 	static {
         ObjectifyService.register(Game.class);
+       
     }
 
 	public static final Logger _log = Logger.getLogger(GameServlet.class.getName());
 	
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    @SuppressWarnings("rawtypes")
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();
+    //    UserService userService = UserServiceFactory.getUserService();
+//        User user = userService.getCurrentUser();
 
         String sportName = req.getParameter("sport");
-        String beginTime = req.getParameter("beginTime");
+ //       String beginTime = req.getParameter("beginTime");
         String beginAMorPM = req.getParameter("beginAMorPM");
         String endAMorPM = req.getParameter("endAMorPM");
-        String endTime = req.getParameter("endTime");
+    //    String endTime = req.getParameter("endTime");
+
+       // Long gameID = Long.parseLong(req.getParameter("id"));
+      
+
         String email = req.getParameter("email");
-        String sms = req.getParameter("sms");
+     //   String sms = req.getParameter("sms");
 
         //String test = req.getParameter("endTimeMin");
         //_log.info(sportName);
         
+
         int beginTimeHour = Integer.parseInt(req.getParameter("beginTimeHour"));
         int beginTimeMin = Integer.parseInt(req.getParameter("beginTimeMin"));
         String beginAMPM = req.getParameter("beginAMPM");
         String endAMPM = req.getParameter("endAMPM");
+        //int gameIndex = Integer.parseInt(req.getParameter("index"));
         int endTimeHour = Integer.parseInt(req.getParameter("endTimeHour"));
         int endTimeMin = Integer.parseInt(req.getParameter("endTimeMin"));
+
+        int maxPlayers = Integer.parseInt(req.getParameter("numOfPlayers"));
+
         Boolean emailAlert = Boolean.parseBoolean(email);
-        Boolean smsAlert = Boolean.parseBoolean(sms);
+   //     Boolean smsAlert = Boolean.parseBoolean(sms);
         
         //HOW TO GET LOCATION WTF
         
-        String longitude = req.getParameter("longitude");
-        String latitude = req.getParameter("latitude");
+//        String longitude = req.getParameter("longitude");
+//        String latitude = req.getParameter("latitude");
         //_log.info(longitude +" "+ latitude);
 
+
        Game game = new Game();
-
        game.setSport(sportName);
-       //game.setSport(sportName);
-
-     //  game.setSport(sportName);
+       game.setNumPlayers(1);
+       game.setMaxPlayers(maxPlayers);
        game.setStartTime(beginTimeHour, beginTimeMin, beginAMPM);
        game.setEndTime(endTimeHour, endTimeMin, endAMPM);
+
        game.setEmailAlerts(emailAlert);
-       game.setSmsAlerts(smsAlert);
+   //    game.setSmsAlerts(smsAlert);
+
        
-       // saving Location
-       String longitude1 = req.getParameter("longitude");
-       String latitude1 = req.getParameter("latitude");
-       _log.info(longitude1 +" "+ latitude1);
+//       
+//       // saving Location
+//       String longitude1 = req.getParameter("longitude");
+//       String latitude1 = req.getParameter("latitude");
+//       _log.info(longitude1 +" "+ latitude1);
+//       
+//       double latitude = Double.parseDouble(req.getParameter("latitude"));
+//       double longitude = Double.parseDouble(req.getParameter("longitude"));
+//       game.setLocation(latitude, longitude);
+//
+//       // TODO: getting location address
+//       
+//       // saving locationName
+//       String locationName = req.getParameter("locationName");
+//       game.setLocationName(locationName);
+//       _log.info(locationName);
        
+
        double latitude2 = Double.parseDouble(req.getParameter("latitude"));
        double longitude2 = Double.parseDouble(req.getParameter("longitude"));
        game.setLocation(latitude2, longitude2);
@@ -89,15 +117,23 @@ public class GameServlet extends HttpServlet {
           else if(endAMorPM=="pm"){
        	 //  game.setDate(endTime+12);
           }
-        resp.sendRedirect("/home.jsp");
-        
 
-       
+        resp.sendRedirect("/home.jsp");
+
        ofy().save().entity(game);
        //resp.sendRedirect("/");
        _log.info("Game from " + beginTimeHour +":" + beginTimeMin + " until " + endTimeHour + ":" + endTimeMin);
 
         _log.info("New game created!");
     }
+    @SuppressWarnings("rawtypes")
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    
+          Long gameID = Long.parseLong(req.getParameter("gameId"));
 
+          Game game= ofy().load().key(Key.create(Game.class,gameID)).get();
+          game.setNumPlayers(game.getNumPlayers()+1);
+          resp.sendRedirect("/joingame.jsp");
+    }
+    
 }
