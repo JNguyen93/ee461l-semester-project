@@ -86,10 +86,12 @@
 		  pageContext.setAttribute("sport", game.getSport());
 		  pageContext.setAttribute("start", game.getStartTime());
 		  pageContext.setAttribute("end", game.getEndTime());
+      pageContext.setAttribute("locationName", game.getLocationName());
 		  
 		  %>  <p> Sport: <b>${fn:escapeXml(sport)}</b> </p>
 		  	  <p> Start Time: <b>${fn:escapeXml(start)}</b> </p>
-		  	  <p> End Time: <b>${fn:escapeXml(end)}</b> </p> <%
+		  	  <p> End Time: <b>${fn:escapeXml(end)}</b> </p>
+          <p> Location: <b>${fn:escapeXml(locationName)}</b></p><%
 	}
     
     
