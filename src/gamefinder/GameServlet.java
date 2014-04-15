@@ -60,7 +60,13 @@ public class GameServlet extends HttpServlet {
        double longitude = Double.parseDouble(req.getParameter("longitude"));
        game.setLocation(latitude, longitude);
 
-
+       // TODO: getting location address
+       
+       // saving locationName
+       String locationName = req.getParameter("locationName");
+       game.setLocationName(locationName);
+       _log.info(locationName);
+       
        if(beginAMorPM=="am"){
     	//   game.setDate(beginTime);
        }
