@@ -24,7 +24,10 @@ public class Game<LatLng> {
 	private int hour_e;
 	private int min_e;
 	private String ampm_e;
+	private int numPlayers;
+	private int gameID;
 	private int numOfPlayers;
+
 	
 	public static final Logger _log = Logger.getLogger(GameServlet.class.getName());
 	
@@ -35,6 +38,13 @@ public class Game<LatLng> {
 	}
 	public void setSport(String sport){
 		this.sport = sport;
+	}
+	
+	public void setID(int id){
+		this.gameID = id;
+	}
+	public int getID(){
+		return gameID;
 	}
 	public void setStartTime(int hour, int min, String AMPM){
 		this.hour_s = hour;
@@ -48,6 +58,18 @@ public class Game<LatLng> {
 		String startTime;
 		startTime = hour_s + min_s + ampm_s;
 		return startTime;
+	}
+	
+	public void setNumPlayers(int numPlayers){
+		this.numPlayers = numPlayers;
+	}
+	
+	public int getNumPlayers(){
+		return numPlayers;
+	}
+	
+	public void joinGame(){
+		this.numPlayers += 1;
 	}
 	
 	public void setEndTime(int hour, int min, String AMPM){
@@ -77,21 +99,6 @@ public class Game<LatLng> {
 	public void setNumOfPlayers(int players){
 		this.numOfPlayers=players;
 	}
-	/*
-	public String getLocation(){
-		return locationName;
-=======
-	public void setLocation(LatLng newLoc){
-		this.location=newLoc;
->>>>>>> .r32
-	}*/
-	
-	
-/*	public void setLocation(String locationName){
-		this.locationName= locationName;
-	}
-<<<<<<< .mine
-	*/
 
 
 	public LatLng getLocation(){
