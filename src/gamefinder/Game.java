@@ -24,6 +24,7 @@ public class Game<LatLng> {
 	private int hour_e;
 	private int min_e;
 	private String ampm_e;
+	private int numOfPlayers;
 	
 	public static final Logger _log = Logger.getLogger(GameServlet.class.getName());
 	
@@ -70,7 +71,12 @@ public class Game<LatLng> {
 	public Calendar getDate(){
 		return date;
 	}
-
+	public int getNumOfPlayers(){
+		return numOfPlayers;
+	}
+	public void setNumOfPlayers(int players){
+		this.numOfPlayers=players;
+	}
 	/*
 	public String getLocation(){
 		return locationName;
