@@ -43,6 +43,9 @@ public class GameServlet extends HttpServlet {
         
         //HOW TO GET LOCATION WTF
         
+        String longitude = req.getParameter("longitude");
+        String latitude = req.getParameter("latitude");
+        //_log.info(longitude +" "+ latitude);
 
        Game game = new Game();
 
