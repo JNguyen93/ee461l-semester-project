@@ -62,18 +62,24 @@ function initialize() {
 		        draggable:true
 		    });
 		    // makes the info window pop up on new markers
-		    	google.maps.event.addListener(marker, 'click', (function(marker) {
+		    google.maps.event.addListener(marker, 'click', (function(marker) {
 		    		return function(){
 		    			var marked=true;
 		    			infowindow.setContent("It's a new Marker!");
 		    			infowindow.open(map,marker);
+		    			latitude = marker.getPosition().lat();
+		        		longitude = marker.getPosition().lng();
+		        		$("#latitude").val(marker.getPosition().lat());
+		        		$("#longitude").val(marker.getPosition().lng());
 		    		}
-		    	})(marker));
+		    })(marker));
 		    // changes the coordinates as we drag the markers	
 		    	google.maps.event.addListener(marker, 'position_changed', (function(marker) {
 		        	return function(){
 		        		latitude = marker.getPosition().lat();
 		        		longitude = marker.getPosition().lng();
+		        		$("#latitude").val(marker.getPosition().lat());
+		        		$("#longitude").val(marker.getPosition().lng());
 		        		var s = "Coordinates: " + marker.getPosition(); 
 		        		infowindow.setContent(s);
 		    			infowindow.open(map,marker);
