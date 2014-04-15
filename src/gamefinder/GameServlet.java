@@ -29,7 +29,8 @@ public class GameServlet extends HttpServlet {
         String beginAMorPM = req.getParameter("beginAMorPM");
         String endAMorPM = req.getParameter("endAMorPM");
         String endTime = req.getParameter("endTime");
-
+        String email = req.getParameter("email");
+        String sms = req.getParameter("sms");
 
         //String test = req.getParameter("endTimeMin");
         //_log.info(sportName);
@@ -40,6 +41,14 @@ public class GameServlet extends HttpServlet {
         String endAMPM = req.getParameter("endAMPM");
         int endTimeHour = Integer.parseInt(req.getParameter("endTimeHour"));
         int endTimeMin = Integer.parseInt(req.getParameter("endTimeMin"));
+        Boolean emailAlert = Boolean.parseBoolean(email);
+        Boolean smsAlert = Boolean.parseBoolean(sms);
+        
+        //HOW TO GET LOCATION WTF
+        
+        String longitude = req.getParameter("longitude");
+        String latitude = req.getParameter("latitude");
+        //_log.info(longitude +" "+ latitude);
 
        Game game = new Game();
 
@@ -49,16 +58,17 @@ public class GameServlet extends HttpServlet {
      //  game.setSport(sportName);
        game.setStartTime(beginTimeHour, beginTimeMin, beginAMPM);
        game.setEndTime(endTimeHour, endTimeMin, endAMPM);
-
+       game.setEmailAlerts(emailAlert);
+       game.setSmsAlerts(smsAlert);
        
        // saving Location
        String longitude1 = req.getParameter("longitude");
        String latitude1 = req.getParameter("latitude");
        _log.info(longitude1 +" "+ latitude1);
        
-       double latitude = Double.parseDouble(req.getParameter("latitude"));
-       double longitude = Double.parseDouble(req.getParameter("longitude"));
-       game.setLocation(latitude, longitude);
+       double latitude2 = Double.parseDouble(req.getParameter("latitude"));
+       double longitude2 = Double.parseDouble(req.getParameter("longitude"));
+       game.setLocation(latitude2, longitude2);
 
        // TODO: getting location address
        
@@ -83,7 +93,7 @@ public class GameServlet extends HttpServlet {
         
 
        
-       ofy().save().entity(game).now();
+       ofy().save().entity(game);
        //resp.sendRedirect("/");
        _log.info("Game from " + beginTimeHour +":" + beginTimeMin + " until " + endTimeHour + ":" + endTimeMin);
 
