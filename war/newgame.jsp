@@ -22,6 +22,7 @@
 
 
        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <style type="text/css">
       #map-canvas { height: 75%; width:80%;}
     </style>
@@ -128,6 +129,9 @@ Time:
 <br>
 <input type="checkbox" name="email" value="emailNotification">send e-mail notifications<br>
 <input type="checkbox" name="sms" value="smsNotification">send sms notifications<br>
+
+Manual Longitude:<input type="text" name="longitude" id="longitude"><br>
+Manual Latitude:<input type="text" name="latitude" id="latitude">
 
 <p>Click and drag to select a location to play!</p>
 <div id="map-canvas"></div>
