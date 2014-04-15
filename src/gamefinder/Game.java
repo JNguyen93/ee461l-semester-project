@@ -13,9 +13,8 @@ import com.googlecode.objectify.annotation.Id;
 
 
 @Entity
-public class Game<LatLng> extends Observable{
-    @Id
-    private Long id;
+public class Game<LatLng> implements Comparable<Game>{
+    @Id private Long id;
     private String sport;
     private Calendar date;
     private double[] location = new double[2];
@@ -46,10 +45,10 @@ public class Game<LatLng> extends Observable{
 	}
 	public void setSport(String sport){
 		this.sport = sport;
-		if(emailAlerts){
-			setChanged();
-			notifyObservers();
-		}
+		//if(emailAlerts){
+		//	setChanged();
+		//	notifyObservers();
+		//}
 	}
 	
 	public void setID(int id){
@@ -143,5 +142,15 @@ public class Game<LatLng> extends Observable{
     public String getLocationAddress(){
     	return locationAddress;
     }
+
+	@Override
+	public int compareTo(Game o) {
+		if (this.id == (o.getID())) {
+            return 1;
+        } else if (this.id != (o.getID())) {
+            return -1;
+        }
+		return 0;
+	}
  	
 }
