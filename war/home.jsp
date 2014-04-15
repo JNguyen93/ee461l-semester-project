@@ -72,12 +72,14 @@
 
 <%  if (user != null){ %>
       <br><br>
-      <a href="/newgame.jsp">Create new game</a>
+      <a href="/newgame.jsp">Create new game</a><br><br>
        
 <%    ObjectifyService.register(Game.class);
       List<Game> games = ObjectifyService.ofy().load().type(Game.class).list();
       %>
-      <input type="hidden" id="hiddenGameSize" value="<%=games.size()%>"> 
+      <input type="hidden" id="hiddenGameSize" value="<%=games.size()%>">
+
+      <div style="height:200px;width:80%;border:1px solid #000000;overflow:auto;">
 
 <%  
       int i=0;
@@ -88,18 +90,18 @@
         pageContext.setAttribute("locationName", game.getLocationName());
         pageContext.setAttribute("latitude", games.get(i).getLat());
         pageContext.setAttribute("longitude", games.get(i).getLng()); %>
-              <p> Sport: <b>${fn:escapeXml(sport)}</b><input type="hidden" id="hiddenSport<%=i%>" value="<%=games.get(i).getSport()%>"></p>
-              <p> Start Time: <b>${fn:escapeXml(start)}</b><input type="hidden" id="hiddenStartTime<%=i%>" value="<%=games.get(i).getStartTime()%>"></p>
-              <p> End Time: <b>${fn:escapeXml(end)}</b><input type="hidden" id="hiddenEndTime<%=i%>" value="<%=games.get(i).getEndTime()%>"></p>
-              <p> Location: <b>${fn:escapeXml(locationName)}</b><input type="hidden" id="hiddenLocationName<%=i%>" value="<%=games.get(i).getLocationName()%>"></p>
-              <p> Latitude: <b>${fn:escapeXml(latitude)}</b><input type="hidden" id="hiddenLat<%=i%>" value="<%=games.get(i).getLat()%>"></p>
-              <p> Longitude: <b>${fn:escapeXml(longitude)}</b><input type="hidden" id="hiddenLng<%=i%>" value="<%=games.get(i).getLng()%>"></p>
+              <p><b>Sport: </b>${fn:escapeXml(sport)}<input type="hidden" id="hiddenSport<%=i%>" value="<%=games.get(i).getSport()%>"></p>
+              <p><b>Start Time: </b>${fn:escapeXml(start)}<input type="hidden" id="hiddenStartTime<%=i%>" value="<%=games.get(i).getStartTime()%>"></p>
+              <p><b>End Time: </b>${fn:escapeXml(end)}<input type="hidden" id="hiddenEndTime<%=i%>" value="<%=games.get(i).getEndTime()%>"></p>
+              <p><b>Location: </b>${fn:escapeXml(locationName)}<input type="hidden" id="hiddenLocationName<%=i%>" value="<%=games.get(i).getLocationName()%>"></p>
+              <input type="hidden" id="hiddenLat<%=i%>" value="<%=games.get(i).getLat()%>">
+              <input type="hidden" id="hiddenLng<%=i%>" value="<%=games.get(i).getLng()%>"><hr>
 <% 
     i++;}
-  } %>
+  } %></div>
 
-<br><br><br>
-    <div id="map-canvas"></div>
+<br>
+    <div id="map-canvas"></div><br><br>
   </center>
   </body>
 </html>
