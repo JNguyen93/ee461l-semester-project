@@ -120,6 +120,14 @@ public class Game<LatLng> implements Comparable<Game>{
             return location;
     }
     
+    public double getLat(){
+    	return location[0];
+    }
+    
+    public double getLng(){
+    	return location[1];
+    }
+    
     public void setLocation(double lat, double lng){
     	location[0] = lat;
     	location[1] = lng;
