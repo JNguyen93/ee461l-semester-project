@@ -1,6 +1,6 @@
 package gamefinder;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.logging.Logger;
 
 import javax.servlet.http.*;
@@ -28,18 +28,19 @@ public class GameServlet extends HttpServlet {
 
     //    UserService userService = UserServiceFactory.getUserService();
 //        User user = userService.getCurrentUser();
-
+    	double latitude2 = 0;
+	    double longitude2 = 0;
         String sportName = req.getParameter("sport");
- //       String beginTime = req.getParameter("beginTime");
+        //String beginTime = req.getParameter("beginTime");
         String beginAMorPM = req.getParameter("beginAMorPM");
         String endAMorPM = req.getParameter("endAMorPM");
-    //    String endTime = req.getParameter("endTime");
+        //String endTime = req.getParameter("endTime");
 
-       // Long gameID = Long.parseLong(req.getParameter("id"));
+        //Long gameID = Long.parseLong(req.getParameter("id"));
       
 
         String email = req.getParameter("email");
-     //   String sms = req.getParameter("sms");
+        //String sms = req.getParameter("sms");
 
         //String test = req.getParameter("endTimeMin");
         //_log.info(sportName);
@@ -56,14 +57,30 @@ public class GameServlet extends HttpServlet {
         int maxPlayers = Integer.parseInt(req.getParameter("numOfPlayers"));
 
         Boolean emailAlert = Boolean.parseBoolean(email);
-   //     Boolean smsAlert = Boolean.parseBoolean(sms);
+        //Boolean smsAlert = Boolean.parseBoolean(sms);
         
         //HOW TO GET LOCATION WTF
         
-//        String longitude = req.getParameter("longitude");
-//        String latitude = req.getParameter("latitude");
+//      String longitude = req.getParameter("longitude");
+//      String latitude = req.getParameter("latitude");
         //_log.info(longitude +" "+ latitude);
 
+        try{
+ 	       latitude2 = Double.parseDouble(req.getParameter("latitude"));
+ 	       longitude2 = Double.parseDouble(req.getParameter("longitude"));
+        }
+        catch(NumberFormatException e){
+        	_log.info("Error - no location picked");
+     	   	resp.setContentType("text/html");
+    		PrintWriter output = resp.getWriter();
+     	    String res = "Error: no location chosen on map!";
+ 		    output.println(
+ 		    "<!doctype html public \"-//w3c//dtd html 4.0 " +
+ 		    "transitional//en\">\n" +
+ 		    "<html>\n" +
+ 		    "<center>" + res + "</center>\n" +
+ 		    "</body></html>");
+        }
 
        Game game = new Game();
        game.setSport(sportName);
@@ -73,7 +90,7 @@ public class GameServlet extends HttpServlet {
        game.setEndTime(endTimeHour, endTimeMin, endAMPM);
 
        game.setEmailAlerts(emailAlert);
-   //    game.setSmsAlerts(smsAlert);
+       //game.setSmsAlerts(smsAlert);
 
        
 //       
@@ -93,9 +110,6 @@ public class GameServlet extends HttpServlet {
 //       game.setLocationName(locationName);
 //       _log.info(locationName);
        
-
-       double latitude2 = Double.parseDouble(req.getParameter("latitude"));
-       double longitude2 = Double.parseDouble(req.getParameter("longitude"));
        game.setLocation(latitude2, longitude2);
 
        // TODO: getting location address
