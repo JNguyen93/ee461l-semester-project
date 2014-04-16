@@ -80,6 +80,7 @@ public class GameServlet extends HttpServlet {
  		    "<html>\n" +
  		    "<center>" + res + "</center>\n" +
  		    "</body></html>");
+        	resp.sendRedirect("/home.jsp");
         }
 
        Game game = new Game();
