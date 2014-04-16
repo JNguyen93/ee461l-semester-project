@@ -130,9 +130,9 @@ Time:
 <input type="checkbox" name="email" value="emailNotification">send e-mail notifications<br>
 <input type="checkbox" name="sms" value="smsNotification">send sms notifications<br>
 
-Manual Longitude:<input type="text" name="longitude" id="longitude"><br>
-Manual Latitude:<input type="text" name="latitude" id="latitude"><br>
-<input type="text" name="locationName" id="locationName" value="Enter a name for the location">
+<input type="hidden" name="longitude" id="longitude">
+<input type="hidden" name="latitude" id="latitude">
+<input type="text" name="locationName" id="locationName" size="50" value="Enter a name for the location">
 
 <p>Click and drag to select a location to play!</p>
 <div id="map-canvas"></div>
