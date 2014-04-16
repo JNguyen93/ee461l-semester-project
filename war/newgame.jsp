@@ -81,50 +81,48 @@ Players:
 <body>
 Time:  
 <select name="beginTimeHour">
-<option value="12">12</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="8">8</option>
-<option value="9">9</option>
-<option value="10">10</option>
-<option value="11">11</option>
+  <option value="12">12</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
 </select>:
 <select name="beginTimeMin">
-<option value="00">00</option>
-<option value="30">30</option>
+  <option value="00">00</option>
+  <option value="30">30</option>
 </select>
 <select name="beginAMPM">
-<option value="PM">pm</option>
-<option value="AM">am</option>
+  <option value="PM">pm</option>
+  <option value="AM">am</option>
 </select>
  to <select name="endTimeHour">
-<option value="12">12</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="8">8</option>
-<option value="9">9</option>
-<option value="10">10</option>
-<option value="11">11</option>
-
-</select>
+  <option value="12">12</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
 </select>:
 <select name="endTimeMin">
-<option value="00">00</option>
-<option value="30">30</option>
+  <option value="00">00</option>
+  <option value="30">30</option>
 </select>
 <select name="endAMPM">
-<option value="PM">pm</option>
-<option value="AM">am</option>
+  <option value="PM">pm</option>
+  <option value="AM">am</option>
 </select>
 <br>
 <input type="checkbox" name="email" value="emailNotification">send e-mail notifications<br>
