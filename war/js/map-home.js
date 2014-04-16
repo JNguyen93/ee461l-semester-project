@@ -37,7 +37,7 @@ function initialize() {
                 "<br><b>Location:</b> " + document.getElementById("hiddenLocationName"+i).value +
                 "<br><b>Date:</b> " +
                 "<br><b>Time:</b> " + document.getElementById("hiddenStartTime"+i).value + " - " + document.getElementById("hiddenEndTime"+i).value +
-                "<br><b>Players:</b> " + "/ ";
+                "<br><b>Players:</b> " + document.getElementById("hiddenPlayers"+i).value + "/ " + document.getElementById("hiddenMaxPlayers"+i).value;
                 infowindow.setContent(contentString);
                 infowindow.open(map,marker);
             }
