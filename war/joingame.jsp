@@ -41,6 +41,18 @@
     </script>
     <script type="text/javascript" src="/js/map.js">
     </script>
+    <script type="text/javascript">
+	function alert1(){
+		alert("You have been subscribed!");
+		return true;
+		}
+	</script>
+	<script type="text/javascript">
+	function alert2(){
+		alert("You have been unsubscribed!");
+		return true;
+		}
+	</script>
  </head>
 
  <header>
@@ -101,7 +113,15 @@
 		  <input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
 
 		  <input type="submit" value="Join Game"/>
-		  </form> <%
+		  </form> 
+		    <div><form action="/subscribe" method="post">
+      			<div><input type="submit" value="Subscribe!" onclick="return alert1()"/></div>
+			</form>
+			<form action="/subscribe" method="get">
+	      		<div><input type="submit" value="Unsubscribe" onclick="return alert2()"/></div>
+			</form>
+			</div>
+		  <%
 	}
     
     
