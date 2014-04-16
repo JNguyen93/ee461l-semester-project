@@ -29,7 +29,7 @@
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXMMCXLxQqjdY-Y3T3oEQwkxc8bC_NYag&sensor=false"/>
     </script>
-    <script type="text/javascript" src="/js/map-draggable.js">
+    <script type="text/javascript" src="/js/map-newgame.js">
     </script>
 
  
