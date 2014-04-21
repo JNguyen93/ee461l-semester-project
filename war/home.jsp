@@ -66,9 +66,39 @@
 <%  }
     else{%>
       <p>Hello!
-      <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a> to create a new game!</p>
-      
-<%  } %>
+      <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a> to create a new game!</p><br><br>
+
+      <%    ObjectifyService.register(Game.class);
+      List<Game> games = ObjectifyService.ofy().load().type(Game.class).list();
+      %>
+      <input type="hidden" id="hiddenGameSize" value="<%=games.size()%>">
+
+      <div style="height:200px;width:80%;border:1px solid #000000;overflow:auto;">
+
+<%  
+      int i=0;
+      for(Game game: games){  
+        pageContext.setAttribute("sport", game.getSport());
+        pageContext.setAttribute("start", game.getStartTime());
+        pageContext.setAttribute("end", game.getEndTime());
+        pageContext.setAttribute("locationName", game.getLocationName());
+        pageContext.setAttribute("latitude", games.get(i).getLat());
+        pageContext.setAttribute("longitude", games.get(i).getLng()); 
+        pageContext.setAttribute("players", games.get(i).getNumPlayers());
+        pageContext.setAttribute("maxPlayers", games.get(i).getMaxPlayers()); %>
+              <p><b>Sport: </b>${fn:escapeXml(sport)}<input type="hidden" id="hiddenSport<%=i%>" value="<%=games.get(i).getSport()%>"></p>
+              <p><b>Start Time: </b>${fn:escapeXml(start)}<input type="hidden" id="hiddenStartTime<%=i%>" value="<%=games.get(i).getStartTime()%>"></p>
+              <p><b>End Time: </b>${fn:escapeXml(end)}<input type="hidden" id="hiddenEndTime<%=i%>" value="<%=games.get(i).getEndTime()%>"></p>
+              <p><b>Location: </b>${fn:escapeXml(locationName)}<input type="hidden" id="hiddenLocationName<%=i%>" value="<%=games.get(i).getLocationName()%>"></p>
+              <p><b>Players: </b>${fn:escapeXml(players)} &#x2F ${fn:escapeXml(maxPlayers)}</p>
+              <input type="hidden" id="hiddenPlayers<%=i%>" value="<%=games.get(i).getNumPlayers()%>">
+              <input type="hidden" id="hiddenMaxPlayers<%=i%>" value="<%=games.get(i).getMaxPlayers()%>">
+              <input type="hidden" id="hiddenLat<%=i%>" value="<%=games.get(i).getLat()%>">
+              <input type="hidden" id="hiddenLng<%=i%>" value="<%=games.get(i).getLng()%>">
+              <hr>
+<% 
+    i++;}
+  } %>
 
 <%  if (user != null){ %>
       <br><br>
