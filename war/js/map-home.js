@@ -35,7 +35,10 @@ function initialize() {
                 var contentString =
                 "<b>Sport:</b> " + document.getElementById("hiddenSport"+i).value + 
                 "<br><b>Location:</b> " + document.getElementById("hiddenLocationName"+i).value +
-                "<br><b>Date:</b> " +
+                "<br><b>Date(yyyy/mm/dd):</b> " + 
+                document.getElementById("hiddenYear"+i).value + "/" +
+                document.getElementById("hiddenMonth"+i).value + "/" +
+                document.getElementById("hiddenDay"+i).value  +
                 "<br><b>Time:</b> " + document.getElementById("hiddenStartTime"+i).value + " - " + document.getElementById("hiddenEndTime"+i).value +
                 "<br><b>Players:</b> " + document.getElementById("hiddenPlayers"+i).value + "/ " + document.getElementById("hiddenMaxPlayers"+i).value;
                 infowindow.setContent(contentString);

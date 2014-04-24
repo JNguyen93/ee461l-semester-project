@@ -1,7 +1,7 @@
 package gamefinder;
 
 import java.util.Observable;
-
+import java.util.Date;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
@@ -28,20 +28,48 @@ public class Game<LatLng> implements Comparable<Game>{
     private int numPlayers;
     private int gameIndex;
     private int maxPlayers;
-
+    private Date date=new Date();
+    private int year=date.getYear();
+    private int month=date.getMonth();
+    private int day=date.getDay();
+   
         
  //   public static final Logger _log = Logger.getLogger(GameServlet.class.getName());
     
     public Game(){
-   
     }
-    public Long getID(){
-    	return id;
+    public void updateDate(){
+    	this.date.setYear(year+1900);
+    	this.date.setMonth(month);
+    	this.date.setDate(day);
+    }
+    public int getYear(){
+    	return year;
+    }
+    public void setYear(int Year){
+    	this.year=Year;
+    	updateDate();
+    }
+    public int getMonth(){
+            return month;
+    }
+    public void setMonth(int Month){
+    	this.month=Month;
+    	updateDate();
+    }
+    public int getDay(){
+    	return day;
+    }
+    public void setDay(int Day){
+    	this.day=Day;
+    	updateDate();
     }
     public String getSport(){
             return sport;
     }
-  
+    public Long getID(){
+    	return id;
+    }
     
     public void setIndex(int index){
             this.gameIndex = index;

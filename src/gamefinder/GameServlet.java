@@ -58,7 +58,9 @@ public class GameServlet extends HttpServlet {
 
         Boolean emailAlert = Boolean.parseBoolean(email);
         //Boolean smsAlert = Boolean.parseBoolean(sms);
-        
+        int year = Integer.parseInt(req.getParameter("Year"));
+        int month = Integer.parseInt(req.getParameter("Month"));
+        int day = Integer.parseInt(req.getParameter("Day"));
         //HOW TO GET LOCATION WTF
         
 //      String longitude = req.getParameter("longitude");
@@ -89,7 +91,9 @@ public class GameServlet extends HttpServlet {
        game.setMaxPlayers(maxPlayers);
        game.setStartTime(beginTimeHour, beginTimeMin, beginAMPM);
        game.setEndTime(endTimeHour, endTimeMin, endAMPM);
-
+       game.setYear(year);
+       game.setMonth(month);
+       game.setDay(day);
        game.setEmailAlerts(emailAlert);
        //game.setSmsAlerts(smsAlert);
 

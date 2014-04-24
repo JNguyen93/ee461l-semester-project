@@ -3,7 +3,7 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
-
+<%@ page import="java.io.*,java.util.*, javax.servlet.*" %>
 <%@ page import="java.util.Collections" %>
 <%@ page import="com.googlecode.objectify.*" %>
 
@@ -40,6 +40,9 @@
   <center><h1>Welcome to the Game Finder</h1></center>
   </header>
 <body>
+
+  
+
 <%
     String websiteName = request.getParameter("websiteName");
     if (websiteName == null) {
@@ -48,6 +51,9 @@
     pageContext.setAttribute("websiteName", websiteName);
     if (user != null) {
       pageContext.setAttribute("user", user);
+       Date date = new Date();
+   	out.print( "<h2 align=\"center\">" + date.toString() + "</h2>");
+  
 %>
 
   <p>Hello, ${fn:escapeXml(user.nickname)}! (You can sign out
@@ -124,6 +130,7 @@ Time:
   <option value="PM">pm</option>
   <option value="AM">am</option>
 </select>
+
 <br>
 <input type="checkbox" name="email" value="emailNotification">send e-mail notifications<br>
 <input type="checkbox" name="sms" value="smsNotification">send sms notifications<br>
@@ -131,6 +138,11 @@ Time:
 <input type="hidden" name="longitude" id="longitude">
 <input type="hidden" name="latitude" id="latitude">
 <input type="text" name="locationName" id="locationName" size="50" value="Enter a name for the location">
+<br>
+Date:
+<input type="text" name="Year" id="Year" size="50" value="Enter the Year of the event (yyyy)">
+<input type="text" name="Month" id="Month" size="50" value="Enter the Month of the event (mm)">
+<input type="text" name="Day" id="Day" size="50" value="Enter the Day of the event (dd)">
 
 <p>Click and drag to select a location to play!</p>
 <div id="map-canvas"></div>
