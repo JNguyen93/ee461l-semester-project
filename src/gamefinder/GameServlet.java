@@ -26,10 +26,8 @@ public class GameServlet extends HttpServlet {
     @SuppressWarnings("rawtypes")
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-    //    UserService userService = UserServiceFactory.getUserService();
-//        User user = userService.getCurrentUser();
-    	double latitude2 = 0;
-	    double longitude2 = 0;
+    	double latitude = 0;
+	    double longitude = 0;
         String sportName = req.getParameter("sport");
         //String beginTime = req.getParameter("beginTime");
         String beginAMorPM = req.getParameter("beginAMorPM");
@@ -42,10 +40,6 @@ public class GameServlet extends HttpServlet {
         String email = req.getParameter("email");
         //String sms = req.getParameter("sms");
 
-        //String test = req.getParameter("endTimeMin");
-        //_log.info(sportName);
-        
-
         int beginTimeHour = Integer.parseInt(req.getParameter("beginTimeHour"));
         int beginTimeMin = Integer.parseInt(req.getParameter("beginTimeMin"));
         String beginAMPM = req.getParameter("beginAMPM");
@@ -53,23 +47,17 @@ public class GameServlet extends HttpServlet {
         //int gameIndex = Integer.parseInt(req.getParameter("index"));
         int endTimeHour = Integer.parseInt(req.getParameter("endTimeHour"));
         int endTimeMin = Integer.parseInt(req.getParameter("endTimeMin"));
-
         int maxPlayers = Integer.parseInt(req.getParameter("numOfPlayers"));
-
         Boolean emailAlert = Boolean.parseBoolean(email);
         //Boolean smsAlert = Boolean.parseBoolean(sms);
         int year = Integer.parseInt(req.getParameter("Year"));
         int month = Integer.parseInt(req.getParameter("Month"));
         int day = Integer.parseInt(req.getParameter("Day"));
-        //HOW TO GET LOCATION WTF
-        
-//      String longitude = req.getParameter("longitude");
-//      String latitude = req.getParameter("latitude");
-        //_log.info(longitude +" "+ latitude);
+        String locationName = req.getParameter("locationName");
 
         try{
- 	       latitude2 = Double.parseDouble(req.getParameter("latitude"));
- 	       longitude2 = Double.parseDouble(req.getParameter("longitude"));
+ 	       latitude = Double.parseDouble(req.getParameter("latitude"));
+ 	       longitude = Double.parseDouble(req.getParameter("longitude"));
         }
         catch(NumberFormatException e){
         	_log.info("Error - no location picked");
@@ -95,52 +83,15 @@ public class GameServlet extends HttpServlet {
        game.setMonth(month);
        game.setDay(day);
        game.setEmailAlerts(emailAlert);
-       //game.setSmsAlerts(smsAlert);
-
        
-//       
-//       // saving Location
-//       String longitude1 = req.getParameter("longitude");
-//       String latitude1 = req.getParameter("latitude");
-//       _log.info(longitude1 +" "+ latitude1);
-//       
-//       double latitude = Double.parseDouble(req.getParameter("latitude"));
-//       double longitude = Double.parseDouble(req.getParameter("longitude"));
-//       game.setLocation(latitude, longitude);
-//
-//       // TODO: getting location address
-//       
-//       // saving locationName
-//       String locationName = req.getParameter("locationName");
-//       game.setLocationName(locationName);
-//       _log.info(locationName);
-       
-       game.setLocation(latitude2, longitude2);
-
-       // TODO: getting location address
-       
-       // saving locationName
-       String locationName = req.getParameter("locationName");
+       game.setLocation(latitude, longitude);
        game.setLocationName(locationName);
        _log.info(locationName);
-       
-       if(beginAMorPM=="am"){
-    	//   game.setDate(beginTime);
-       }
-       else if(beginAMorPM=="pm"){
-    	 //  game.setDate(beginTime+12);
-       }
-       if(endAMorPM=="am"){
-       	//   game.setDate(endTime);
-          }
-          else if(endAMorPM=="pm"){
-       	 //  game.setDate(endTime+12);
-          }
 
         resp.sendRedirect("/home.jsp");
 
        ofy().save().entity(game);
-       //resp.sendRedirect("/");
+
        _log.info("Game from " + beginTimeHour +":" + beginTimeMin + " until " + endTimeHour + ":" + endTimeMin);
 
         _log.info("New game created!");
@@ -149,7 +100,7 @@ public class GameServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     
           Long gameID = Long.parseLong(req.getParameter("gameId"));
-
+          //_log.info(Long.toString(gameID));
           Game game= ofy().load().key(Key.create(Game.class,gameID)).get();
           game.setNumPlayers(game.getNumPlayers()+1);
           resp.sendRedirect("/joingame.jsp");
