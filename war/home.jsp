@@ -73,7 +73,7 @@
       %>
       <input type="hidden" id="hiddenGameSize" value="<%=games.size()%>">
 
-      <div style="height:200px;width:80%;border:1px solid #000000;overflow:auto;">
+<div style="font-size:12px;color:#222222;height:492px;width:20%;border:3px solid #A0A0A0;overflow:auto;float:left;text-align:center;">
 
 <%  
       int i=0;
@@ -109,15 +109,18 @@
   } %>
 
 <%  if (user != null){ %>
-      <br><br>
-      <a href="/newgame.jsp">Create new game</a><br><br>
+      
+      <a href="/newgame.jsp">Create new game!</a><br>
+      OR<br>
+      <a href="/joingame.jsp">Join a game!</a><br>
+      
        
 <%    ObjectifyService.register(Game.class);
       List<Game> games = ObjectifyService.ofy().load().type(Game.class).list();
       %>
       <input type="hidden" id="hiddenGameSize" value="<%=games.size()%>">
 
-      <div style="height:200px;width:80%;border:1px solid #000000;overflow:auto;">
+<div style="font-size:12px;color:#222222;height:492px;width:20%;border:3px solid #A0A0A0;overflow:auto;float:left;text-align:center;">
 
 <%  
       int i=0;
@@ -151,7 +154,8 @@
   } %></div>
 
 <br>
-    <div id="map-canvas"></div><br><br>
+        <div style="float:right;overflow:auto;width:78%;border:3px solid #A0A0A0;" id="map-canvas">
+<br><br>
   </center>
   </body>
 </html>
