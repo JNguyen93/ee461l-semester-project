@@ -77,13 +77,14 @@
   <option value="kickball">Kickball</option>
 </select>
  </header> 
-Minimum Amount of Players: 
+
+<body>
+  Minimum Amount of Players: 
 <select name ="numOfPlayers">
  <% for (int i=2; i<=20; i++){%>
     <option value="<%=i%>"><%=i%></option>
 <%}%>
-</select>
-<body>
+</select><br>
 Time:  
 <select name="beginTimeHour">
   <option value="12">12</option>
