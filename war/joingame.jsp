@@ -84,12 +84,13 @@
 <%  } %>
 
     <% if (user != null){ %>
-    <br><br>
+ 
     <a href="/newgame.jsp">Create new game</a>
-       
+ 	 <br>
+ 	 <br>    
     
-    <div style="height:800px;width:300px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
-       
+    <div style="font-size:12px;color:#222222;height:800px;width:20%;border:3px solid #A0A0A0;overflow:auto;float:center;text-align:center;">
+   	
 <%  
 
 	ObjectifyService.register(Game.class);
@@ -99,13 +100,20 @@
 		  pageContext.setAttribute("sport", game.getSport());
 		  pageContext.setAttribute("start", game.getStartTime());
 		  pageContext.setAttribute("end", game.getEndTime());
+
+		  pageContext.setAttribute("numPlayers", game.getNumPlayers());
+	
+
 		  pageContext.setAttribute("numOfPlayers", game.getNumPlayers());
 		  pageContext.setAttribute("id", game.getID());
 		  %>
 		  <hr>
 		  
+
 		    <p> Sport: <b>${fn:escapeXml(sport)}</b> </p>
 		  	  <p> Start Time: <b>${fn:escapeXml(start)}</b> </p>
+		  	  <p> End Time: <b>${fn:escapeXml(end)}</b> </p> 
+		  	   <p> Numbers of players: <b>${fn:escapeXml(numPlayers)}</b> </p>
 		  	  <p> End Time: <b>${fn:escapeXml(end)}</b> </p>
 		  	  <p> Players: <b>${fn:escapeXml(numOfPlayers)}</b> </p>
 		  	  <p> id: <b>${fn:escapeXml(id)}</b> </p>
@@ -121,13 +129,16 @@
 	      		<div><input type="submit" value="Unsubscribe" onclick="return alert2()"/></div>
 			</form>
 			</div>
+			
+			
 		  <%
 	}
     
+	
     
     } %>
 </div>
-<br><br><br>
+<br><a href="/">Home</a>
   </center>
   </body>
 </html>
