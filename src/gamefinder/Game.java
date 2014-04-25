@@ -31,7 +31,7 @@ public class Game<LatLng> implements Comparable<Game>{
     private int maxPlayers;
     private ArrayList<Email> emailList;
     private Date date=new Date();
-    private int year=date.getYear();
+    private int year=date.getYear()+1900;
     private int month=date.getMonth();
     private int day=date.getDay();
            
@@ -44,6 +44,9 @@ public class Game<LatLng> implements Comparable<Game>{
     	this.date.setYear(year+1900);
     	this.date.setMonth(month);
     	this.date.setDate(day);
+    }
+    public Date getDate(){
+    	return date;
     }
     public int getYear(){
     	return year;
