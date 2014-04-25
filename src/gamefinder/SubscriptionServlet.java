@@ -24,13 +24,10 @@ public class SubscriptionServlet  extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {	        
         Email email = new Email(req.getUserPrincipal().getName());
         try{
-            Ref<Game> game = ObjectifyService.ofy().load().type(Game.class)
-            		.id(req.getParameter("id"));
-            ArrayList<Email> list = game.get().getEmailList();
-        	if(!list.contains(email)){
-        		list.add(email);
-        		ofy().save().entity(game).now();
-        	}
+        	Long gameID = Long.parseLong(req.getParameter("gameId"));
+            Game game= ofy().load().key(Key.create(Game.class,gameID)).get();
+            game.addEmail(email.getAddress());
+        	ofy().save().entity(game).now();
             resp.sendRedirect("/joingame.jsp?");
         }
         catch(IllegalArgumentException e){
@@ -39,20 +36,16 @@ public class SubscriptionServlet  extends HttpServlet {
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		try{
-			ObjectifyService.register(Email.class);
-			List<Email> emails = ObjectifyService.ofy().load().type(Email.class).list();   
-			Collections.sort(emails);
-			Email email = new Email(req.getUserPrincipal().getName());
-			for(Email email1 : emails){
-				if(email1.getAddress().equals(email.getAddress())){
-					ofy().delete().entity(email1).now();
-				}
-			}
+		Email email = new Email(req.getUserPrincipal().getName());
+        try{
+        	Long gameID = Long.parseLong(req.getParameter("gameId"));
+            Game game= ofy().load().key(Key.create(Game.class,gameID)).get();
+            game.removeEmail(email.getAddress());
+        	ofy().save().entity(game).now();
             resp.sendRedirect("/joingame.jsp?");
-		}
-		catch(IllegalStateException e){
-	        resp.sendRedirect("/joingame.jsp?");
-		}
+        }
+        catch(IllegalArgumentException e){
+            resp.sendRedirect("/joingame.jsp?");
+        }
 	}
 }
