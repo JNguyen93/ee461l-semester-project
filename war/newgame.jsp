@@ -57,7 +57,7 @@
 %>
 
   <p>Hello, ${fn:escapeXml(user.nickname)}! (You can sign out
-  <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">here</a>.)</p><br><br><br>
+  <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">here</a>.)</p>
 
 </body>
 
@@ -69,20 +69,19 @@
   <option value="football">Football</option>
   <option value="soccer">Soccer</option>
   <option value="basketball">Basketball</option>
+  <option value="ultimate">Ultimate</option>
+  <option value="tennis">Tennis</option>
+  <option value="volleyball">Volleyball</option>
+  <option value="dodgeball">Dodgeball</option>
+  <option value="baseball">Baseball</option>
+  <option value="kickball">Kickball</option>
 </select>
  </header> 
 Players: 
 <select name ="numOfPlayers">
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="8">8</option>
-<option value="9">9</option>
-<option value="10">10</option>
-<option value="11">11</option>
+ <% for (int i=1; i<=20; i++){%>
+    <option value="<%=i%>"><%=i%></option>
+<%}%>
 </select>
 <body>
 Time:  
