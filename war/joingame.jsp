@@ -97,25 +97,26 @@
 	List<Game> games = ObjectifyService.ofy().load().type(Game.class).list();   
 	//games.clear();
 	for(Game game: games){
-		  pageContext.setAttribute("sport", game.getSport());
-		  pageContext.setAttribute("start", game.getStartTime());
-		  pageContext.setAttribute("end", game.getEndTime());
+		pageContext.setAttribute("sport", game.getSport());
+		pageContext.setAttribute("start", game.getStartTime());
+		pageContext.setAttribute("end", game.getEndTime());
+		pageContext.setAttribute("Year", game.getYear());
+        pageContext.setAttribute("Month", game.getMonth());
+        pageContext.setAttribute("Day", game.getDay());
+		pageContext.setAttribute("locationName", game.getLocationName());
 
-		  pageContext.setAttribute("numPlayers", game.getNumPlayers());
-	
-
-		  pageContext.setAttribute("numOfPlayers", game.getNumPlayers());
-		  pageContext.setAttribute("id", game.getID());
+		pageContext.setAttribute("Players", game.getNumPlayers());
+		pageContext.setAttribute("maxPlayers", game.getMaxPlayers());
+		pageContext.setAttribute("id", game.getID());
 		  %>
-		  <hr>
 		  
-
-		    <p> Sport: <b>${fn:escapeXml(sport)}</b> </p>
-		  	  <p> Start Time: <b>${fn:escapeXml(start)}</b> </p>
-		  	  <p> End Time: <b>${fn:escapeXml(end)}</b> </p> 
-		  	   <p> Numbers of players: <b>${fn:escapeXml(numPlayers)}</b> </p>
-		  	  <p> End Time: <b>${fn:escapeXml(end)}</b> </p>
-		  	  <p> Players: <b>${fn:escapeXml(numOfPlayers)}</b> </p>
+		  
+			<p><b>Sport: </b>${fn:escapeXml(sport)}</p>
+            <p><b>Location: </b>${fn:escapeXml(locationName)}</p>
+            <p><b>Time: </b>${fn:escapeXml(start)} -  ${fn:escapeXml(end)}</p>
+            <p><b>Date: </b>${fn:escapeXml(Month)} &#x2F ${fn:escapeXml(Day)} &#x2F ${fn:escapeXml(Year)}</p>
+            <p><b>Players: </b>${fn:escapeXml(players)} &#x2F ${fn:escapeXml(maxPlayers)}</p>
+			
 		  <form action="/makegame" method="get">
 		  <input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
 		  <input type="submit" value="Join Game"/>
@@ -129,6 +130,7 @@
 				<input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
 	      		<div><input type="submit" value="Unsubscribe" onclick="return alert2()"/></div>
 			</form>
+			<hr>
 			</div>
 			
 			
