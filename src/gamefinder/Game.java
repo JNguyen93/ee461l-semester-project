@@ -1,5 +1,6 @@
 package gamefinder;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Date;
 import com.googlecode.objectify.annotation.Entity;
@@ -28,15 +29,16 @@ public class Game<LatLng> implements Comparable<Game>{
     private int numPlayers;
     private int gameIndex;
     private int maxPlayers;
+    private ArrayList<Email> emailList;
     private Date date=new Date();
     private int year=date.getYear();
     private int month=date.getMonth();
     private int day=date.getDay();
-   
-        
+           
  //   public static final Logger _log = Logger.getLogger(GameServlet.class.getName());
     
     public Game(){
+    	emailList = new ArrayList<Email>();
     }
     public void updateDate(){
     	this.date.setYear(year+1900);
@@ -200,6 +202,10 @@ public class Game<LatLng> implements Comparable<Game>{
             return -1;
         }
 		return 0;
+	}
+	
+	public ArrayList<Email> getEmailList(){
+		return emailList;
 	}
  	
 }
