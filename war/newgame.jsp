@@ -77,7 +77,7 @@
   <option value="kickball">Kickball</option>
 </select>
  </header> 
-Players: 
+Minimum Amount of Players: 
 <select name ="numOfPlayers">
  <% for (int i=1; i<=20; i++){%>
     <option value="<%=i%>"><%=i%></option>
