@@ -3,6 +3,7 @@ package gamefinder;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Date;
+
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
@@ -218,6 +219,14 @@ public class Game<LatLng> implements Comparable<Game>{
 	
 	public void sendEmails(){
 		EmailSender.sendEmail(this);
+	}
+	public void sendSingleEmail(String address) {
+		// TODO Auto-generated method stub
+			EmailSender.sendSingleEmail(this, address);
+	}
+	public void removeEmail(String address) {
+		// TODO Auto-generated method stub
+		this.emailList.remove(address);
 	}
  	
 }
