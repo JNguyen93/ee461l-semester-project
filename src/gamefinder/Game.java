@@ -29,7 +29,7 @@ public class Game<LatLng> implements Comparable<Game>{
     private int numPlayers;
     private int gameIndex;
     private int maxPlayers;
-    private ArrayList<Email> emailList;
+    private ArrayList<String> emailList;
     private Date date=new Date();
     private int year=date.getYear()+1900;
     private int month=date.getMonth();
@@ -38,7 +38,7 @@ public class Game<LatLng> implements Comparable<Game>{
  //   public static final Logger _log = Logger.getLogger(GameServlet.class.getName());
     
     public Game(){
-    	emailList = new ArrayList<Email>();
+    	emailList = new ArrayList<String>();
     }
     public void updateDate(){
     	this.date.setYear(year+1900);
@@ -207,8 +207,17 @@ public class Game<LatLng> implements Comparable<Game>{
 		return 0;
 	}
 	
-	public ArrayList<Email> getEmailList(){
+	public ArrayList<String> getEmailList(){
 		return emailList;
+	}
+	
+	public void addEmail(String s){
+		if(!emailList.contains(s))
+			this.emailList.add(s);
+	}
+	
+	public void sendEmails(){
+		EmailSender.sendEmail(this);
 	}
  	
 }
