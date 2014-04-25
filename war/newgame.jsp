@@ -130,8 +130,31 @@ Time:
   <option value="PM">pm</option>
   <option value="AM">am</option>
 </select>
-
 <br>
+Date:
+<select name="Month">
+  <option value="1">January</option>
+  <option value="2">February</option>
+  <option value="3">March</option>
+  <option value="4">April</option>
+  <option value="5">May</option>
+  <option value="6">June</option>
+  <option value="7">July</option>
+  <option value="8">August</option>
+  <option value="9">September</option>
+  <option value="10">October</option>
+  <option value="11">November</option>
+  <option value="12">December</option>
+</select>
+<select name="Day">
+  <% for (int i=1; i<32; i++){%>
+    <option value="<%=i%>"><%=i%></option>
+<%}%>
+</select>
+<select name="Year">
+  <option value="2014">2014</option>
+</select><br>
+
 <input type="checkbox" name="email" value="emailNotification">send e-mail notifications<br>
 <input type="checkbox" name="sms" value="smsNotification">send sms notifications<br>
 
@@ -139,10 +162,7 @@ Time:
 <input type="hidden" name="latitude" id="latitude">
 <input type="text" name="locationName" id="locationName" size="50" value="Enter a name for the location">
 <br>
-Date:
-<input type="text" name="Year" id="Year" size="50" value="Enter the Year of the event (yyyy)">
-<input type="text" name="Month" id="Month" size="50" value="Enter the Month of the event (mm)">
-<input type="text" name="Day" id="Day" size="50" value="Enter the Day of the event (dd)">
+
 
 <p>Click and drag to select a location to play!</p>
 <div id="map-canvas"></div>
