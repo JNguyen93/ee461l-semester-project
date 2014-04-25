@@ -116,15 +116,17 @@
 		  	   <p> Numbers of players: <b>${fn:escapeXml(numPlayers)}</b> </p>
 		  	  <p> End Time: <b>${fn:escapeXml(end)}</b> </p>
 		  	  <p> Players: <b>${fn:escapeXml(numOfPlayers)}</b> </p>
-		  	  <form action="/makegame" method="get">
+		  <form action="/makegame" method="get">
 		  <input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
-
 		  <input type="submit" value="Join Game"/>
 		  </form> 
+		  
 		    <div><form action="/subscribe" method="post">
+		    	<input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
       			<div><input type="submit" value="Subscribe!" onclick="return alert1()"/></div>
 			</form>
 			<form action="/subscribe" method="get">
+				<input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
 	      		<div><input type="submit" value="Unsubscribe" onclick="return alert2()"/></div>
 			</form>
 			</div>
