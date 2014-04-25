@@ -79,7 +79,7 @@
  </header> 
 Minimum Amount of Players: 
 <select name ="numOfPlayers">
- <% for (int i=1; i<=20; i++){%>
+ <% for (int i=2; i<=20; i++){%>
     <option value="<%=i%>"><%=i%></option>
 <%}%>
 </select>
@@ -108,7 +108,6 @@ Time:
   <option value="AM">am</option>
 </select>
  to <select name="endTimeHour">
-  <option value="12">12</option>
   <option value="1">1</option>
   <option value="2">2</option>
   <option value="3">3</option>
@@ -120,6 +119,7 @@ Time:
   <option value="9">9</option>
   <option value="10">10</option>
   <option value="11">11</option>
+  <option value="12">12</option>
 </select>:
 <select name="endTimeMin">
   <option value="00">00</option>
