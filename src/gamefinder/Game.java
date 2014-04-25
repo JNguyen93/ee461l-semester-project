@@ -92,7 +92,7 @@ public class Game<LatLng> implements Comparable<Game>{
             //date.set(Calendar.AM_PM,AMPM);
     }
     public String getStartTime(){
-    	String startTime = String.format("%d:%2d %s", hour_s, min_s, ampm_s);
+    	String startTime = String.format("%d:%02d %s", hour_s, min_s, ampm_s);
         return startTime;
     }
     
@@ -124,9 +124,8 @@ public class Game<LatLng> implements Comparable<Game>{
     }
         
     public String getEndTime(){
-            String endTime;
-            endTime = hour_e + min_e + ampm_e;
-            return endTime;
+    	String endTime = String.format("%d:%02d %s", hour_s, min_s, ampm_s);
+        return endTime;
     }
     
     
