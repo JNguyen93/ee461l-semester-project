@@ -36,7 +36,16 @@
    <url-pattern>/makegame</url-pattern>
    </servlet-mapping>
  
+   <servlet>
+       <servlet-name>removegame</servlet-name>
+       <servlet-class>gamefinder.Removegame</servlet-class>
+   </servlet>
   
+   <servlet-mapping>
+   <servlet-name>removegame</servlet-name>
+   <url-pattern>/Removegame</url-pattern>
+   </servlet-mapping>
+   
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>home.jsp</welcome-file>
