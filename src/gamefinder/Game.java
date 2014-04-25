@@ -124,7 +124,7 @@ public class Game<LatLng> implements Comparable<Game>{
     }
         
     public String getEndTime(){
-    	String endTime = String.format("%d:%02d %s", hour_s, min_s, ampm_s);
+    	String endTime = String.format("%d:%02d %s", hour_e, min_e, ampm_e);
         return endTime;
     }
     
