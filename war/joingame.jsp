@@ -116,7 +116,6 @@
 		  	   <p> Numbers of players: <b>${fn:escapeXml(numPlayers)}</b> </p>
 		  	  <p> End Time: <b>${fn:escapeXml(end)}</b> </p>
 		  	  <p> Players: <b>${fn:escapeXml(numOfPlayers)}</b> </p>
-		  	  <p> id: <b>${fn:escapeXml(id)}</b> </p>
 		  	  <form action="/makegame" method="get">
 		  <input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
 
