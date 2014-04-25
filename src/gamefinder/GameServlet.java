@@ -148,11 +148,15 @@ public class GameServlet extends HttpServlet {
     }
     @SuppressWarnings("rawtypes")
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-    
+    	Email email = new Email(req.getUserPrincipal().getName());
           Long gameID = Long.parseLong(req.getParameter("gameId"));
-          //_log.info(Long.toString(gameID));
           Game game= ofy().load().key(Key.create(Game.class,gameID)).get();
           game.setNumPlayers(game.getNumPlayers()+1);
+          int count = game.getNumPlayers();
+          if(count == game.getMaxPlayers())
+        	  game.sendEmails();
+          else if(count > game.getMaxPlayers())
+        	  game.sendSingleEmail(email.getAddress());
           resp.sendRedirect("/joingame.jsp");
     }
     
