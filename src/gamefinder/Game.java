@@ -3,6 +3,7 @@ package gamefinder;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -17,8 +18,6 @@ public class Game<LatLng> implements Comparable<Game>{
     private String sport;
 
     private double[] location = new double[2];
-    //location[0] = latitude
-    //location[1] = longitude
     private String locationName;
     private String locationAddress;
     private int hour_s;
@@ -35,11 +34,11 @@ public class Game<LatLng> implements Comparable<Game>{
     private int year=date.getYear()+1900;
     private int month=date.getMonth();
     private int day=date.getDay();
-           
- //   public static final Logger _log = Logger.getLogger(GameServlet.class.getName());
+    private boolean massEmailSent;
     
     public Game(){
     	emailList = new ArrayList<String>();
+    	massEmailSent = false;
     }
     public void updateDate(){
     	this.date.setYear(year+1900);
@@ -84,12 +83,9 @@ public class Game<LatLng> implements Comparable<Game>{
             return gameIndex;
     }
     public void setStartTime(int hour, int min, String AMPM){
-            this.hour_s = hour;
-            this.min_s = min;
-            this.ampm_s = AMPM;
-            //date.set(Calendar.HOUR,hour);
-            //date.set(Calendar.MINUTE,min);
-            //date.set(Calendar.AM_PM,AMPM);
+        this.hour_s = hour;
+        this.min_s = min;
+        this.ampm_s = AMPM;
     }
     public String getStartTime(){
     	String startTime = String.format("%d:%02d %s", hour_s, min_s, ampm_s);
@@ -118,35 +114,16 @@ public class Game<LatLng> implements Comparable<Game>{
             this.hour_e = hour;
             this.min_e = min;
             this.ampm_e = AMPM;
-    //      date.set(Calendar.HOUR,hour);
-    //      date.set(Calendar.MINUTE,min);
-    //      date.set(Calendar.AM_PM,AMPM);
     }
         
     public String getEndTime(){
     	String endTime = String.format("%d:%02d %s", hour_e, min_e, ampm_e);
         return endTime;
     }
-    
-    
-  
-
-	private Boolean emailAlerts;
-//	private Boolean smsAlerts;
-	
-//	public static final Logger _log = Logger.getLogger(GameServlet.class.getName());
-	
-	
 	
 	public void setSport(String sport){
 		this.sport = sport;
-		//if(emailAlerts){
-		//	setChanged();
-		//	notifyObservers();
-		//}
 	}
-
-
 
     public double[] getLocation(){    
             return location;
@@ -176,21 +153,6 @@ public class Game<LatLng> implements Comparable<Game>{
     public void setLocationAddress(String address){
     	locationAddress = address;
     }
-
-
-//	public Calendar getDate(){
-//		return date;
-//	}
-//	
-	
-	
-	public void setEmailAlerts(Boolean b){
-		emailAlerts = b;
-	}
-
-//	public void setSmsAlerts(Boolean b){
-//		smsAlerts = b;
-//	}
 	
     public String getLocationAddress(){
     	return locationAddress;
@@ -210,21 +172,40 @@ public class Game<LatLng> implements Comparable<Game>{
 		return emailList;
 	}
 	
-	public void addEmail(String s){
+	public boolean addEmail(String s){
 		if(!emailList.contains(s))
-			this.emailList.add(s);
+			return emailList.add(s);
+		else{
+			return false;
+		}
 	}
 	
 	public void sendEmails(){
-		EmailSender.sendEmail(this);
+		if(!massEmailSent){
+			EmailSender.sendEmail(this);
+			massEmailSent = true;
+		}
 	}
 	public void sendSingleEmail(String address) {
-		// TODO Auto-generated method stub
+		if(addEmail(address)){
 			EmailSender.sendSingleEmail(this, address);
+		}
 	}
 	public void removeEmail(String address) {
-		// TODO Auto-generated method stub
 		this.emailList.remove(address);
+	}
+	public boolean isSubscribed(String address){
+		Logger _log = Logger.getLogger(GameServlet.class.getName());
+		_log.info(address);
+		if (emailList.contains(address))
+			_log.info("true!");
+		else{
+			_log.info("false!");
+			for(String email : emailList){
+				_log.info(email);
+			}
+		}
+		return emailList.contains(address);
 	}
  	
 }
