@@ -52,6 +52,16 @@
 		alert("You have been unsubscribed!");
 		return true;
 		}
+	function change(ref){
+    	if (ref.value === "Subscribe" ){
+    		ref.value = "Unsubscribe";
+    		return alert("You have been subscribed!");
+    	}
+    	else{
+        	ref.value = "Subscribe";
+        	return alert("You have been unsubscribed!");
+    	}
+	}
 	</script>
  </head>
 
@@ -115,31 +125,39 @@
             <p><b>Location: </b>${fn:escapeXml(locationName)}</p>
             <p><b>Time: </b>${fn:escapeXml(start)} -  ${fn:escapeXml(end)}</p>
             <p><b>Date: </b>${fn:escapeXml(Month)} &#x2F ${fn:escapeXml(Day)} &#x2F ${fn:escapeXml(Year)}</p>
-            <p><b>Players: </b>${fn:escapeXml(players)} &#x2F ${fn:escapeXml(maxPlayers)}</p>
+            <p><b>Players: </b>${fn:escapeXml(Players)} &#x2F ${fn:escapeXml(maxPlayers)}</p>
 			
 		  <form action="/makegame" method="get">
 		  <input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
 		  <input type="submit" value="Join Game"/>
 		  </form> 
 		  
-		    <div><form action="/subscribe" method="post">
-		    	<input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
-      			<div><input type="submit" value="Subscribe!" onclick="return alert1()"/></div>
-			</form>
-			<form action="/subscribe" method="get">
+
+<%
+	if (game.isSubscribed(user.getEmail())){		
+%>
+			<form action="/subscribe" method="post">
 				<input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
-	      		<div><input type="submit" value="Unsubscribe" onclick="return alert2()"/></div>
+	      		<div><input type="submit" value="Unsubscribe" onclick="return change(this)"/></div>
 			</form>
-			<hr>
-			</div>
-			
-			
-		  <%
+<%
 	}
-    
-	
-    
-    } %>
+	else{
+%>
+			<form action="/subscribe" method="post">
+				<input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
+	      		<div><input type="submit" value="Subscribe" onclick="return change(this)"/></div>
+			</form>
+<%
+	}
+%>
+			<hr>
+			
+			
+<%
+	}
+    }
+%>
 </div>
 <br><a href="/">Home</a>
   </center>
