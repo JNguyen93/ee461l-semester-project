@@ -90,7 +90,7 @@
 <div style="font-size:12px;color:#222222;height:492px;width:20%;border:3px solid #A0A0A0;overflow:auto;float:left;text-align:center;">
 
 <%  
-      int i=1;
+      int i=0;
       for(Game game: games){
         if(game.isExpiredGame()){
           continue;
@@ -152,7 +152,7 @@
               <hr>
 <% 
     i++;}
-    if(i > 1){
+    if(i > 0){
     i = i-1;
   } %>
   </div>

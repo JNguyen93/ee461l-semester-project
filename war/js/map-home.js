@@ -14,7 +14,7 @@ function initialize() {
 
     var hiddenMaxMarkers = document.getElementById("hiddenGameSize").value;
 
-    for (var i = 1; i <= hiddenMaxMarkers; i++) {
+    for (var i = 0; i <= hiddenMaxMarkers; i++) {
         // obtain the attribues of each marker
 
         //var contentString = "<html><body><div><p><h2>" + locationName + "</h2></p></div></body></html>";
