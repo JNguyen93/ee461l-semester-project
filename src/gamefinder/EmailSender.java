@@ -20,7 +20,7 @@ public class EmailSender {
 	public static void sendEmail(Game game){
 		try{
            	ArrayList<String> list = game.getEmailList();
-           	String locationAddress = "";
+           	String locationAddress = reverseGeocoding(game.getLat(), game.getLng());
         	String message = "There are now enough players for " + game.getSport()
         			+ " at " + game.getStartTime() + ". See you at the game! The game will be held at " +
         			game.getLocationName() + " located at " + locationAddress +".\n\n Here is a link to the location!\n" +
@@ -47,7 +47,7 @@ public class EmailSender {
 		
 		public static void sendSingleEmail(Game game, String email){
 			try{
-				String locationAddress = "";
+				String locationAddress = reverseGeocoding(game.getLat(), game.getLng());
 	        	String message = "There are now enough players for " + game.getSport()
 	        			+ " at " + game.getStartTime() + ". See you at the game! The game will be held at " +
 	        			game.getLocationName() + " located at " + locationAddress +".\n\n Here is a link to the location!\n" +
@@ -68,6 +68,11 @@ public class EmailSender {
 	    			_log.info("ERROR: Could not send out Email Results response : " 
 	    														+ e.getMessage());
 	    		}
+	}
+	//TODO : figure out how to reverse geocode and get string address
+	private static String reverseGeocoding(double lat, double lng){
+		String address = "";
+		return address;
 	}
 	
 }
