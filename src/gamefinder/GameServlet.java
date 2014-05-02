@@ -26,8 +26,8 @@ public class GameServlet extends HttpServlet {
 	
     @SuppressWarnings("rawtypes")
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {	
+    	Email email = new Email(req.getUserPrincipal().getName());
     	boolean validGame = true;
-    	
     	
     	double latitude = 0;
 	    double longitude = 0;
@@ -58,21 +58,14 @@ public class GameServlet extends HttpServlet {
 
         //Long gameID = Long.parseLong(req.getParameter("id"));
       
-
-        String email = req.getParameter("email");
-        //String sms = req.getParameter("sms");
-
         int beginTimeHour = Integer.parseInt(req.getParameter("beginTimeHour"));
         int beginTimeMin = Integer.parseInt(req.getParameter("beginTimeMin"));
         String beginAMPM = req.getParameter("beginAMPM");
         String endAMPM = req.getParameter("endAMPM");
-        //int gameIndex = Integer.parseInt(req.getParameter("index"));
         int endTimeHour = Integer.parseInt(req.getParameter("endTimeHour"));
         int endTimeMin = Integer.parseInt(req.getParameter("endTimeMin"));
         int maxPlayers = Integer.parseInt(req.getParameter("numOfPlayers"));
-        Boolean emailAlert = Boolean.parseBoolean(email);
-        //Boolean smsAlert = Boolean.parseBoolean(sms);
-        
+        boolean subscribeUser = req.getParameter("emailNotifcation") != null;
 
     	int year = Integer.parseInt(req.getParameter("Year"));
     	int month = Integer.parseInt(req.getParameter("Month"));
@@ -127,12 +120,19 @@ public class GameServlet extends HttpServlet {
        game.setYear(year);
        game.setMonth(month);
        game.setDay(day);
-       game.setEmailAlerts(emailAlert);
        
        game.setLocation(latitude, longitude);
        game.setLocationName(locationName);
        _log.info(locationName);
 
+       if(subscribeUser){
+    	   _log.info("subscribing user!");
+    	   game.addEmail(email.getAddress());
+       }
+       else{
+    	   _log.info("user didnt want to be subscribed?!");
+       }
+       
         resp.sendRedirect("/home.jsp");
 
 
@@ -148,16 +148,17 @@ public class GameServlet extends HttpServlet {
     }
     @SuppressWarnings("rawtypes")
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    	// single person joins game and sends subscription
     	Email email = new Email(req.getUserPrincipal().getName());
-          Long gameID = Long.parseLong(req.getParameter("gameId"));
-          Game game= ofy().load().key(Key.create(Game.class,gameID)).get();
-          game.setNumPlayers(game.getNumPlayers()+1);
-          int count = game.getNumPlayers();
-          if(count == game.getMaxPlayers())
-        	  game.sendEmails();
-          else if(count > game.getMaxPlayers())
-        	  game.sendSingleEmail(email.getAddress());
-          resp.sendRedirect("/joingame.jsp");
+        Long gameID = Long.parseLong(req.getParameter("gameId"));
+        Game game= ofy().load().key(Key.create(Game.class,gameID)).get();
+        game.setNumPlayers(game.getNumPlayers()+1);
+        int count = game.getNumPlayers();
+        if(count == game.getMaxPlayers())
+        	game.sendEmails();
+        else if(count > game.getMaxPlayers())
+        	game.sendSingleEmail(email.getAddress());
+        resp.sendRedirect("/joingame.jsp");
     }
     
 }
