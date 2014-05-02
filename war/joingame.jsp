@@ -41,17 +41,7 @@
     </script>
     <script type="text/javascript" src="/js/map.js">
     </script>
-    <script type="text/javascript">
-	function alert1(){
-		alert("You have been subscribed!");
-		return true;
-		}
-	</script>
 	<script type="text/javascript">
-	function alert2(){
-		alert("You have been unsubscribed!");
-		return true;
-		}
 	function change(ref){
     	if (ref.value === "Subscribe" ){
     		ref.value = "Unsubscribe";
