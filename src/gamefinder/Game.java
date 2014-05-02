@@ -1,6 +1,7 @@
 package gamefinder;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Observable;
 import java.util.Date;
 import java.util.logging.Logger;
@@ -195,7 +196,7 @@ public class Game<LatLng> implements Comparable<Game>{
 		this.emailList.remove(address);
 	}
 	public boolean isSubscribed(String address){
-		Logger _log = Logger.getLogger(GameServlet.class.getName());
+		/*Logger _log = Logger.getLogger(GameServlet.class.getName());
 		_log.info(address);
 		if (emailList.contains(address))
 			_log.info("true!");
@@ -205,7 +206,43 @@ public class Game<LatLng> implements Comparable<Game>{
 				_log.info(email);
 			}
 		}
+		*/
 		return emailList.contains(address);
+	}
+	
+	public String getMonthText(){
+		switch (month) {
+	        case 1:  return "January";
+	        case 2:  return "February";
+	        case 3:  return "March";
+	        case 4:  return "April";
+	        case 5:  return "May";
+	        case 6:  return "June";
+	        case 7:  return "July";
+	        case 8:  return "August";
+	        case 9:  return "September";
+	        case 10: return "October";
+	        case 11: return "November";
+	        case 12: return "December";
+	        default: return "HOW DID INVALID MONTH PASS?";
+	    }
+	}
+	
+	public boolean isExpiredGame(){
+		//checking if the game date is before current date
+    	Calendar current = Calendar.getInstance();
+    	Calendar gameCal = Calendar.getInstance();
+    	gameCal.set(year, month-1, day);
+    	int endTimeHour_24 = hour_e;
+    	if(hour_e==12 && ampm_e.equals("AM")){
+    		endTimeHour_24 = 0;
+    	}
+    	else if(ampm_e.equals("PM") && hour_e!=12){
+    		endTimeHour_24 = 12+hour_e;
+    	}
+        gameCal.set(Calendar.HOUR_OF_DAY, endTimeHour_24);
+        gameCal.set(Calendar.MINUTE, min_e);
+        return current.after(gameCal);
 	}
  	
 }
