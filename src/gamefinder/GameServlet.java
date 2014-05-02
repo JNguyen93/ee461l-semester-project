@@ -38,23 +38,22 @@ public class GameServlet extends HttpServlet {
          	_log.info("Error - no location picked");
       	   	resp.setContentType("text/html");
      		PrintWriter output = resp.getWriter();
-      	    String res = "Error: no location chosen on map!";
+      	    String res = "Error: no location chosen on map! You must click and or drag until a red marker appears!";
   		    output.println(
   		    "<!doctype html public \"-//w3c//dtd html 4.0 " +
   		    "transitional//en\">\n" +
   		    "<html>\n" +
-  		    "<center>" + res + "</center>\n" +
+  		    "<center>" + res + "<br><br><a href=\"/home.jsp\">Click to go back home</a></center>\n" +
   		    "</body></html>");
-         	resp.sendRedirect("/home.jsp");
          	return;
          }
 	    
         String sportName = req.getParameter("sport");
         String beginAMorPM = req.getParameter("beginAMorPM");
         String endAMorPM = req.getParameter("endAMorPM");
-
         //Long gameID = Long.parseLong(req.getParameter("id"));
-      
+        boolean subscribeUser = req.getParameter("emailNotification") != null;
+        _log.info(req.getParameter("emailNotification"));
         int beginTimeHour = Integer.parseInt(req.getParameter("beginTimeHour"));
         int beginTimeMin = Integer.parseInt(req.getParameter("beginTimeMin"));
         String beginAMPM = req.getParameter("beginAMPM");
@@ -62,7 +61,6 @@ public class GameServlet extends HttpServlet {
         int endTimeHour = Integer.parseInt(req.getParameter("endTimeHour"));
         int endTimeMin = Integer.parseInt(req.getParameter("endTimeMin"));
         int maxPlayers = Integer.parseInt(req.getParameter("numOfPlayers"));
-        boolean subscribeUser = req.getParameter("emailNotifcation") != null;
 
     	int year = Integer.parseInt(req.getParameter("Year"));
     	int month = Integer.parseInt(req.getParameter("Month"));
@@ -85,12 +83,24 @@ public class GameServlet extends HttpServlet {
     	}
         gameCal.set(Calendar.HOUR_OF_DAY, beginTimeHour_24);
         gameCal.set(Calendar.MINUTE, beginTimeMin);
+        
         if(current.after(gameCal)){
+        	validGame = false;
         	_log.info("Game is set to a previous date...");
         	_log.info("current time is "+current.getTime());
         	_log.info("game time is"+gameCal.getTime());
-        	resp.sendRedirect("/home.jsp");
-        	return;
+
+        	_log.info("Error: invalid game date");
+      	   	resp.setContentType("text/html");
+     		PrintWriter output = resp.getWriter();
+      	    String res = "Error: invalid game date! Game was set to a previous date.";
+  		    output.println(
+  		    "<!doctype html public \"-//w3c//dtd html 4.0 " +
+  		    "transitional//en\">\n" +
+  		    "<html>\n" +
+  		    "<center>" + res + "<br><br><a href=\"/home.jsp\">Click to go back home</a></center>\n" +
+  		    "</body></html>");
+         	return;
         }
         int endTimeHour_24=0;
         if(endTimeHour==12 && endAMPM.equals("AM")){
@@ -103,9 +113,17 @@ public class GameServlet extends HttpServlet {
         beginTimeHour_24=beginTimeHour*60+beginTimeMin;
         if(beginTimeHour_24 <= endTimeHour_24){
         	validGame = false;
-        	_log.info("invalid game duration");
-        	resp.sendRedirect("/home.jsp");
-        	return;
+        	_log.info("Error: invalid game duration");
+      	   	resp.setContentType("text/html");
+     		PrintWriter output = resp.getWriter();
+      	    String res = "Error: invalid game duration! Game end time was set to before game begin time.";
+  		    output.println(
+  		    "<!doctype html public \"-//w3c//dtd html 4.0 " +
+  		    "transitional//en\">\n" +
+  		    "<html>\n" +
+  		    "<center>" + res + "<br><br><a href=\"/home.jsp\">Click to go back home</a></center>\n" +
+  		    "</body></html>");
+         	return;
         }
 
        Game game = new Game();
