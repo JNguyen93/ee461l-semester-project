@@ -155,8 +155,8 @@ Date:
   <option value="2014">2014</option>
 </select><br>
 
-<input type="checkbox" name="email" value="emailNotification">send e-mail notifications<br>
-<input type="checkbox" name="sms" value="smsNotification">send sms notifications<br>
+<input type="checkbox" name="emailNotification" value="emailNotification">send me an e-mail notification when there's enough players!<br>
+<input type="checkbox" name="smsNotifcation" value="smsNotification">send sms notifications<br>
 
 <input type="hidden" name="longitude" id="longitude">
 <input type="hidden" name="latitude" id="latitude">
