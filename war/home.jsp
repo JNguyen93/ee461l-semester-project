@@ -76,8 +76,6 @@
   <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">here</a>.)</p>
 
   <a href="/newgame.jsp">Create new game!</a><br>
-      OR<br>
-      <a href="/joingame.jsp">Join a game!</a><br>
 
 <%  }
     else{%>
