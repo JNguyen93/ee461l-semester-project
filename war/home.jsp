@@ -41,6 +41,18 @@
     </script>
     <script type="text/javascript" src="/js/map-home.js">
     </script>
+    <script type="text/javascript">
+      function change(ref){
+        if (ref.value === "Subscribe" ){
+          ref.value = "Unsubscribe";
+          return alert("You have been subscribed!");
+        }
+        else{
+            ref.value = "Subscribe";
+            return alert("You have been unsubscribed!");
+        }
+      }
+  </script>
  </head>
 
  <header>
@@ -82,7 +94,10 @@
 
 <%  
       int i=0;
-      for(Game game: games){  
+      for(Game game: games){
+        if(game.isExpiredGame()){
+          continue;
+        } 
         pageContext.setAttribute("sport", game.getSport());
         pageContext.setAttribute("start", game.getStartTime());
         pageContext.setAttribute("end", game.getEndTime());
@@ -91,18 +106,43 @@
         pageContext.setAttribute("longitude", games.get(i).getLng()); 
         pageContext.setAttribute("players", games.get(i).getNumPlayers());
         pageContext.setAttribute("Year", games.get(i).getYear());
-        pageContext.setAttribute("Month", games.get(i).getMonth());
+        pageContext.setAttribute("Month", games.get(i).getMonthText());
         pageContext.setAttribute("Day", games.get(i).getDay());
-        pageContext.setAttribute("maxPlayers", games.get(i).getMaxPlayers()); %>
+        pageContext.setAttribute("maxPlayers", games.get(i).getMaxPlayers());
+%>
               <p><b>Sport: </b>${fn:escapeXml(sport)}</p>
               <p><b>Location: </b>${fn:escapeXml(locationName)}</p>
               <p><b>Time: </b>${fn:escapeXml(start)} -  ${fn:escapeXml(end)}</p>
-              <p><b>Date: </b>${fn:escapeXml(Month)} &#x2F ${fn:escapeXml(Day)} &#x2F ${fn:escapeXml(Year)}</p>
+              <p><b>Date: </b>${fn:escapeXml(Month)} ${fn:escapeXml(Day)}, ${fn:escapeXml(Year)}</p>
               <p><b>Players: </b>${fn:escapeXml(players)} &#x2F ${fn:escapeXml(maxPlayers)}</p>
+
+              <form action="/makegame" method="get">
+                <input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
+                <input type="submit" value="Join Game"/>
+              </form> 
+
+<%
+  if (game.isSubscribed(user.getEmail())){    
+%>
+      <form action="/subscribe" method="post">
+        <input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
+            <input type="submit" value="Unsubscribe" onclick="return change(this)"/>
+      </form>
+<%
+  }
+  else{
+%>
+      <form action="/subscribe" method="post">
+        <input type="hidden" name="gameId" id="gameId" value="<%=game.getID()%>" />
+            <input type="submit" value="Subscribe" onclick="return change(this)"/>
+      </form>
+<%
+  }
+%>
 
 
               <input type="hidden" id="hiddenYear<%=i%>" value="<%=games.get(i).getYear()%>">
-              <input type="hidden" id="hiddenMonth<%=i%>" value="<%=games.get(i).getMonth()%>">
+              <input type="hidden" id="hiddenMonth<%=i%>" value="<%=games.get(i).getMonthText()%>">
               <input type="hidden" id="hiddenDay<%=i%>" value="<%=games.get(i).getDay()%>">
               <input type="hidden" id="hiddenLocationName<%=i%>" value="<%=games.get(i).getLocationName()%>">
               <input type="hidden" id="hiddenStartTime<%=i%>" value="<%=games.get(i).getStartTime()%>">
