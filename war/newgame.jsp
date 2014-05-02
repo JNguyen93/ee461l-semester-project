@@ -155,8 +155,8 @@ Date:
   <option value="2014">2014</option>
 </select><br>
 
-<input type="checkbox" name="emailNotification" value="emailNotification">send me an e-mail notification when there's enough players!<br>
-<input type="checkbox" name="smsNotifcation" value="smsNotification">send sms notifications<br>
+<input type="checkbox" name="emailNotification" id="emailNotification" checked="true" value="true">send me an e-mail notification when there's enough players!<br>
+<input type="checkbox" name="smsNotifcation" id="smsNotification" value="true">send sms notifications<br>
 
 <input type="hidden" name="longitude" id="longitude">
 <input type="hidden" name="latitude" id="latitude">
@@ -164,7 +164,7 @@ Date:
 <br>
 
 
-<p>Click and drag to select a location to play!</p>
+<p>Click and drag until a red marker appears on the map to select a location to play!</p>
 <div id="map-canvas"></div>
 
 <br>
