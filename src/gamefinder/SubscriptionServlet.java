@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,12 +22,23 @@ public class SubscriptionServlet  extends HttpServlet {
         ObjectifyService.register(Email.class);
     }
 	
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {	        
+	public static final Logger _log = Logger.getLogger(GameServlet.class.getName());
+	
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {	 
+		//combined subscribe and unsubscribe into one method.
         Email email = new Email(req.getUserPrincipal().getName());
         try{
         	Long gameID = Long.parseLong(req.getParameter("gameId"));
             Game game= ofy().load().key(Key.create(Game.class,gameID)).get();
-            game.addEmail(email.getAddress());
+            if(game.isSubscribed(email.getAddress())){
+            	_log.info(email+" is subscribed already!");
+            	_log.info(email+" is now being unsubscribed!");
+            	game.removeEmail(email.getAddress());
+            }
+            else{
+            	if(game.addEmail(email.getAddress()))
+            		_log.info(email+" is now subscribed!");
+            }
         	ofy().save().entity(game).now();
             resp.sendRedirect("/joingame.jsp?");
         }
@@ -36,6 +48,7 @@ public class SubscriptionServlet  extends HttpServlet {
 	}
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		// unsubscribe to game
 		Email email = new Email(req.getUserPrincipal().getName());
         try{
         	Long gameID = Long.parseLong(req.getParameter("gameId"));
