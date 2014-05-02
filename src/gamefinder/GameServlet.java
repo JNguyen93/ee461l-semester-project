@@ -15,11 +15,8 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 
 @SuppressWarnings("serial")
 public class GameServlet extends HttpServlet {
-
-	
 	static {
         ObjectifyService.register(Game.class);
-       
     }
 
 	public static final Logger _log = Logger.getLogger(GameServlet.class.getName());
