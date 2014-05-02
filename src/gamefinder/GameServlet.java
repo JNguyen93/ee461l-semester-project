@@ -173,7 +173,7 @@ public class GameServlet extends HttpServlet {
         	game.sendEmails();
         else if(count > game.getMaxPlayers())
         	game.sendSingleEmail(email.getAddress());
-        resp.sendRedirect("/joingame.jsp");
+        resp.sendRedirect("/home.jsp");
     }
     
 }
