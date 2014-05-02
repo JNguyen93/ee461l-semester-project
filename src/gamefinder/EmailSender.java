@@ -20,8 +20,11 @@ public class EmailSender {
 	public static void sendEmail(Game game){
 		try{
            	ArrayList<String> list = game.getEmailList();
+           	String locationAddress = "";
         	String message = "There are now enough players for " + game.getSport()
-        			+ " at " + game.getStartTime() + ". See you at the game!";
+        			+ " at " + game.getStartTime() + ". See you at the game! The game will be held at " +
+        			game.getLocationName() + " located at " + locationAddress +".\n\n Here is a link to the location!\n" +
+        			"http://maps.google.com/?q="+game.getLat()+","+game.getLng();
     		Properties props = new Properties();
     		Session session = Session.getDefaultInstance(props, null);
     		MimeMessage outMessage = new MimeMessage(session);
@@ -44,8 +47,11 @@ public class EmailSender {
 		
 		public static void sendSingleEmail(Game game, String email){
 			try{
+				String locationAddress = "";
 	        	String message = "There are now enough players for " + game.getSport()
-	        			+ " at " + game.getStartTime() + ". See you at the game!";
+	        			+ " at " + game.getStartTime() + ". See you at the game! The game will be held at " +
+	        			game.getLocationName() + " located at " + locationAddress +".\n\n Here is a link to the location!\n" +
+	        			"http://maps.google.com/?q="+game.getLat()+","+game.getLng();
 	    		Properties props = new Properties();
 	    		Session session = Session.getDefaultInstance(props, null);
 	    		MimeMessage outMessage = new MimeMessage(session);
