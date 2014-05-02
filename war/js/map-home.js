@@ -37,8 +37,8 @@ function initialize() {
                 "<br><b>Location:</b> " + document.getElementById("hiddenLocationName"+i).value +
                 "<br><b>Time:</b> " + document.getElementById("hiddenStartTime"+i).value + " - " + document.getElementById("hiddenEndTime"+i).value +
                 "<br><b>Date:</b> " + 
-                document.getElementById("hiddenMonth"+i).value + "/" +
-                document.getElementById("hiddenDay"+i).value + "/" +
+                document.getElementById("hiddenMonth"+i).value + " " +
+                document.getElementById("hiddenDay"+i).value + " , " +
                 document.getElementById("hiddenYear"+i).value  +
                 "<br><b>Players:</b> " + document.getElementById("hiddenPlayers"+i).value + "/ " + document.getElementById("hiddenMaxPlayers"+i).value;
                 infowindow.setContent(contentString);
@@ -47,5 +47,16 @@ function initialize() {
         })(marker,i));
      }
 }
+
+function change(ref){
+        if (ref.value === "Subscribe" ){
+          ref.value = "Unsubscribe";
+          return alert("You have been subscribed!");
+        }
+        else{
+            ref.value = "Subscribe";
+            return alert("You have been unsubscribed!");
+        }
+      }
 
 google.maps.event.addDomListener(window, 'load', initialize);
