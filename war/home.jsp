@@ -86,12 +86,11 @@
 <%    ObjectifyService.register(Game.class);
       List<Game> games = ObjectifyService.ofy().load().type(Game.class).list();
 %>
-      <input type="hidden" id="hiddenGameSize" value="<%=games.size()%>">
 
 <div style="font-size:12px;color:#222222;height:492px;width:20%;border:3px solid #A0A0A0;overflow:auto;float:left;text-align:center;">
 
 <%  
-      int i=0;
+      int i=1;
       for(Game game: games){
         if(game.isExpiredGame()){
           continue;
@@ -152,10 +151,13 @@
               <input type="hidden" id="hiddenLng<%=i%>" value="<%=games.get(i).getLng()%>">
               <hr>
 <% 
-    i++;} %>
+    i++;}
+    if(i > 1){
+    i = i-1;
+  } %>
   </div>
 
-
+<input type="hidden" id="hiddenGameSize" value="<%=i%>">
 <br>
         <div style="float:right;overflow:auto;width:78%;border:3px solid #A0A0A0;" id="map-canvas">
 <br><br>
