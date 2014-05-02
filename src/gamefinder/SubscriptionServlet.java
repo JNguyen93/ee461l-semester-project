@@ -40,10 +40,10 @@ public class SubscriptionServlet  extends HttpServlet {
             		_log.info(email+" is now subscribed!");
             }
         	ofy().save().entity(game).now();
-            resp.sendRedirect("/joingame.jsp?");
+            resp.sendRedirect("/home.jsp?");
         }
         catch(IllegalArgumentException e){
-            resp.sendRedirect("/joingame.jsp?");
+            resp.sendRedirect("/home.jsp?");
         }
 	}
 	
@@ -55,10 +55,10 @@ public class SubscriptionServlet  extends HttpServlet {
             Game game= ofy().load().key(Key.create(Game.class,gameID)).get();
             game.removeEmail(email.getAddress());
         	ofy().save().entity(game).now();
-            resp.sendRedirect("/joingame.jsp?");
+            resp.sendRedirect("/home.jsp?");
         }
         catch(IllegalArgumentException e){
-            resp.sendRedirect("/joingame.jsp?");
+            resp.sendRedirect("/home.jsp?");
         }
 	}
 }
