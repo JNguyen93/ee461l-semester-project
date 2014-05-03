@@ -1,8 +1,8 @@
 body {
-   font-family: Verdana, Helvetica, sans-serif;
-   background-color: #BFBFBF;
-   margin: 0;
-   padding: 0;
+   background-color:#efdabc;
+   background-repeat:no-repeat;
+   font-family: Century Gothic, Times Roman, sans-serif;
+
 }
 
 ul.navbar {
@@ -10,4 +10,16 @@ ul.navbar {
     top: 2em;
     left: 1em;
     width: 9em;
+}
+
+
+h1 {
+
+font-family: Century Gothic, Times Roman, sans-serif; 
+background: #600000 repeat-x bottom;
+text-align: center;
+margin: 0;
+border: solid;
+border-color: #A0A0A0;
+color: #f0f0f0;
 }
