@@ -38,7 +38,7 @@
  
    <servlet>
        <servlet-name>removegame</servlet-name>
-       <servlet-class>gamefinder.Removegame</servlet-class>
+       <servlet-class>gamefinder.RemoveGameServlet</servlet-class>
    </servlet>
   
    <servlet-mapping>
