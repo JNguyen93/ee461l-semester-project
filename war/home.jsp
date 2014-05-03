@@ -73,7 +73,7 @@
       %>
       <input type="hidden" id="hiddenGameSize" value="<%=games.size()%>">
 
-<div style="font-size:12px;color:#222222;height:492px;width:20%;border:3px solid #A0A0A0;overflow:auto;float:left;text-align:center;">
+<div style="font-size:12px;color:#222222;height:75%;width:20%;border:3px solid #A0A0A0;overflow:auto;float:left;text-align:center;">
 
 <%  
       int i=0;
@@ -93,9 +93,10 @@
         pageContext.setAttribute("Day", game.getDay());
         pageContext.setAttribute("maxPlayers", game.getMaxPlayers()); %>
               <p><b>Sport: </b>${fn:escapeXml(sport)}<input type="hidden" id="hiddenSport<%=i%>" value="<%=game.getSport()%>"></p>
-              <p><b>Start Time: </b>${fn:escapeXml(start)}<input type="hidden" id="hiddenStartTime<%=i%>" value="<%=game.getStartTime()%>"></p>
-              <p><b>End Time: </b>${fn:escapeXml(end)}<input type="hidden" id="hiddenEndTime<%=i%>" value="<%=game.getEndTime()%>"></p>
               <p><b>Location: </b>${fn:escapeXml(locationName)}<input type="hidden" id="hiddenLocationName<%=i%>" value="<%=game.getLocationName()%>"></p>
+              <p><b>Time: </b>${fn:escapeXml(start)} - ${fn:escapeXml(end)}
+                <input type="hidden" id="hiddenStartTime<%=i%>" value="<%=game.getStartTime()%>">
+                <input type="hidden" id="hiddenEndTime<%=i%>" value="<%=game.getEndTime()%>"></p>
               <p><b>Date: </b>${fn:escapeXml(Month)} ${fn:escapeXml(Day)}, ${fn:escapeXml(Year)}
                 <input type="hidden" id="hiddenYear<%=i%>" value="<%=game.getYear()%>">
                <input type="hidden" id="hiddenMonth<%=i%>" value="<%=game.getMonthText()%>">
@@ -118,7 +119,7 @@
 
 <%  if (user != null){ %>
       
-      <a href="/newgame.jsp">Create new game!</a><br>
+      <a href="/newgame.jsp">Create new game!</a><br><br>
       
        
 <%    ObjectifyService.register(Game.class);
@@ -126,7 +127,7 @@
       %>
       <input type="hidden" id="hiddenGameSize" value="<%=games.size()%>">
 
-<div style="font-size:12px;color:#222222;height:492px;width:20%;border:3px solid #A0A0A0;overflow:auto;float:left;text-align:center;">
+<div style="font-size:12px;color:#222222;height:75%;width:20%;border:3px solid #A0A0A0;overflow:auto;float:left;text-align:center;">
 
 <%  
       int i=0;
@@ -146,9 +147,10 @@
         pageContext.setAttribute("Day", game.getDay());
         pageContext.setAttribute("maxPlayers", game.getMaxPlayers()); %>
               <p><b>Sport: </b>${fn:escapeXml(sport)}<input type="hidden" id="hiddenSport<%=i%>" value="<%=game.getSport()%>"></p>
-              <p><b>Start Time: </b>${fn:escapeXml(start)}<input type="hidden" id="hiddenStartTime<%=i%>" value="<%=game.getStartTime()%>"></p>
-              <p><b>End Time: </b>${fn:escapeXml(end)}<input type="hidden" id="hiddenEndTime<%=i%>" value="<%=game.getEndTime()%>"></p>
               <p><b>Location: </b>${fn:escapeXml(locationName)}<input type="hidden" id="hiddenLocationName<%=i%>" value="<%=game.getLocationName()%>"></p>
+              <p><b>Time: </b>${fn:escapeXml(start)} - ${fn:escapeXml(end)}
+                <input type="hidden" id="hiddenStartTime<%=i%>" value="<%=game.getStartTime()%>">
+                <input type="hidden" id="hiddenEndTime<%=i%>" value="<%=game.getEndTime()%>"></p>
               <p><b>Date: </b>${fn:escapeXml(Month)} ${fn:escapeXml(Day)}, ${fn:escapeXml(Year)}
                 <input type="hidden" id="hiddenYear<%=i%>" value="<%=game.getYear()%>">
                <input type="hidden" id="hiddenMonth<%=i%>" value="<%=game.getMonthText()%>">
@@ -188,7 +190,7 @@
     i++;}
   } %></div>
 
-<br>
+
         <div style="float:right;overflow:auto;width:78%;border:3px solid #A0A0A0;" id="map-canvas">
 <br><br>
   </center>
