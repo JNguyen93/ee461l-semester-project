@@ -99,13 +99,13 @@
         pageContext.setAttribute("start", game.getStartTime());
         pageContext.setAttribute("end", game.getEndTime());
         pageContext.setAttribute("locationName", game.getLocationName());
-        pageContext.setAttribute("latitude", games.get(i).getLat());
-        pageContext.setAttribute("longitude", games.get(i).getLng()); 
-        pageContext.setAttribute("players", games.get(i).getNumPlayers());
-        pageContext.setAttribute("Year", games.get(i).getYear());
-        pageContext.setAttribute("Month", games.get(i).getMonthText());
-        pageContext.setAttribute("Day", games.get(i).getDay());
-        pageContext.setAttribute("maxPlayers", games.get(i).getMaxPlayers());
+        pageContext.setAttribute("latitude", game.getLat());
+        pageContext.setAttribute("longitude", game.getLng()); 
+        pageContext.setAttribute("players", game.getNumPlayers());
+        pageContext.setAttribute("Year", game.getYear());
+        pageContext.setAttribute("Month", game.getMonthText());
+        pageContext.setAttribute("Day", game.getDay());
+        pageContext.setAttribute("maxPlayers", game.getMaxPlayers());
 %>
               <p><b>Sport: </b>${fn:escapeXml(sport)}</p>
               <p><b>Location: </b>${fn:escapeXml(locationName)}</p>
@@ -138,17 +138,17 @@
 %>
 
 
-              <input type="hidden" id="hiddenYear<%=i%>" value="<%=games.get(i).getYear()%>">
-              <input type="hidden" id="hiddenMonth<%=i%>" value="<%=games.get(i).getMonthText()%>">
-              <input type="hidden" id="hiddenDay<%=i%>" value="<%=games.get(i).getDay()%>">
-              <input type="hidden" id="hiddenLocationName<%=i%>" value="<%=games.get(i).getLocationName()%>">
-              <input type="hidden" id="hiddenStartTime<%=i%>" value="<%=games.get(i).getStartTime()%>">
-              <input type="hidden" id="hiddenEndTime<%=i%>" value="<%=games.get(i).getEndTime()%>">
-              <input type="hidden" id="hiddenSport<%=i%>" value="<%=games.get(i).getSport()%>">
-              <input type="hidden" id="hiddenPlayers<%=i%>" value="<%=games.get(i).getNumPlayers()%>">
-              <input type="hidden" id="hiddenMaxPlayers<%=i%>" value="<%=games.get(i).getMaxPlayers()%>">
-              <input type="hidden" id="hiddenLat<%=i%>" value="<%=games.get(i).getLat()%>">
-              <input type="hidden" id="hiddenLng<%=i%>" value="<%=games.get(i).getLng()%>">
+              <input type="hidden" id="hiddenYear<%=i%>" value="<%=game.getYear()%>">
+              <input type="hidden" id="hiddenMonth<%=i%>" value="<%=game.getMonthText()%>">
+              <input type="hidden" id="hiddenDay<%=i%>" value="<%=game.getDay()%>">
+              <input type="hidden" id="hiddenLocationName<%=i%>" value="<%=game.getLocationName()%>">
+              <input type="hidden" id="hiddenStartTime<%=i%>" value="<%=game.getStartTime()%>">
+              <input type="hidden" id="hiddenEndTime<%=i%>" value="<%=game.getEndTime()%>">
+              <input type="hidden" id="hiddenSport<%=i%>" value="<%=game.getSport()%>">
+              <input type="hidden" id="hiddenPlayers<%=i%>" value="<%=game.getNumPlayers()%>">
+              <input type="hidden" id="hiddenMaxPlayers<%=i%>" value="<%=game.getMaxPlayers()%>">
+              <input type="hidden" id="hiddenLat<%=i%>" value="<%=game.getLat()%>">
+              <input type="hidden" id="hiddenLng<%=i%>" value="<%=game.getLng()%>">
               <hr>
 <% 
     i++;}
