@@ -152,7 +152,8 @@ Date:
 <%}%>
 </select>
 <select name="Year">
-  <option value="2014">2014</option>
+  <% int year = Calendar.getInstance().get(Calendar.YEAR);>
+  <option value="<%=year%>"><%=year%></option>
 </select><br>
 
 <input type="checkbox" name="emailNotification" id="emailNotification" checked="true" value="true">send me an e-mail notification when there's enough players!<br>
